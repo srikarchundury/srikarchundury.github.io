@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
       width: '20%',
     },
     [theme.breakpoints.down('xs')]: {
-      width: '60%',
+      width: '20%',
     },
   },
   listItem: {
@@ -90,7 +90,6 @@ const sections = [
 function Sidebar({ setCurrentPage }) {
   const classes = useStyles();
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('xs'));
   const [selectedSection, setSelectedSection] = useState(sections[0]);
 
   const handleSectionClick = (section) => {
@@ -100,11 +99,10 @@ function Sidebar({ setCurrentPage }) {
 
   return (
     <Drawer
-      variant={isMobile ? 'temporary' : 'permanent'}
+      variant={'permanent'}
       classes={{
         paper: classes.drawerPaper,
       }}
-      open={!isMobile}
     >
       <div className={classes.profileContainer}>
         <Avatar alt="Srikar Chundury" src={process.env.PUBLIC_URL + '/selfie.jpeg'} className={classes.avatar} />
