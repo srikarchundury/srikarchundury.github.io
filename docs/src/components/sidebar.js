@@ -71,7 +71,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 	description: {
 		textAlign: 'center',
-		fontSize: '1.2rem',
+		fontSize: '2rem',
 	},
 	divider: {
 		margin: `${theme.spacing(2)}px 0`,
@@ -100,13 +100,18 @@ const sections = [
 function Sidebar({ setCurrentPage }) {
 	const classes = useStyles();
 	const theme = useTheme();
+	const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 	const [selectedSection, setSelectedSection] = useState(sections[0]);
 
 	const handleSectionClick = (section) => {
 		setSelectedSection(section);
 		setCurrentPage(section.content);
 	};
-
+	const firstName1 = 'Srikar';
+	const lastName1 = 'Chundury';
+	const firstName2 = 'శ్రీకర్';
+	const lastName2 = 'చుండూరి';
+	const showLastName = !isSmallScreen;
 	return (
 		<div className={classes.sidebarContainer}>
 			<Drawer
@@ -117,12 +122,16 @@ function Sidebar({ setCurrentPage }) {
 			>
 				<div className={classes.profileContainer}>
 					<Avatar alt="Srikar Chundury" src={process.env.PUBLIC_URL + '/selfie.jpeg'} className={classes.avatar} />
-					<Typography variant="subtitle1" className={classes.description}>
-						శ్రీకర్ చుండూరి
-					</Typography>
-					<Typography variant="subtitle2" className={classes.description}>
-						Srikar Chundury
-					</Typography>
+					{isSmallScreen && (
+						<Typography variant="subtitle1" className={classes.description}>
+							{firstName2} {showLastName && lastName2}
+						</Typography>
+					)}
+					{!isSmallScreen && (
+						<Typography variant="subtitle2" className={classes.description}>
+							{firstName2} {lastName2}
+						</Typography>
+					)}
 
 					<div className={classes.socialIcons}>
 						<a href="https://www.linkedin.com/in/srikarchundury/" target="_blank" rel="noopener noreferrer">
@@ -151,12 +160,24 @@ function Sidebar({ setCurrentPage }) {
 							button
 							key={index}
 							onClick={() => handleSectionClick(section)}
-							className={`${classes.listItem} ${section === selectedSection ? classes.selected : ''}`}
+							className={`${classes.listItem} ${section === selectedSection ? classes.selected : ''
+								}`}
 						>
-							{section.icon}
-							<Typography className={classes.listItemText} variant="subtitle1">
-								{section.title}
-							</Typography>
+							{isSmallScreen ? (
+								section.icon
+							) : (
+								<>
+									{section.icon}
+									<ListItemText
+										className={classes.listItemText}
+										variant="subtitle1"
+									>
+										<Typography className={classes.listItemText} variant="subtitle1">
+											{section.title}
+										</Typography>
+									</ListItemText>
+								</>
+							)}
 						</ListItem>
 					))}
 				</List>
