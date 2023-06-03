@@ -2,12 +2,9 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
-  pageContainer: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'flex-start',
-    padding: theme.spacing(3),
-  },
+	pageContainer: {
+		padding: theme.spacing(3),
+	},
   tile: {
     flex: '0 0 calc(33.33% - 20px)',
     margin: '10px',
@@ -16,9 +13,10 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: '0px 3px 8px rgba(0, 0, 0, 0.2)',
     transition: 'transform 0.3s, background-color 0.3s', // Add transition property for smooth animation
     '&:hover': {
-      transform: 'scale(1.2)', // Enlarge the tile by 40%
+      transform: 'scale(1.1)', // Enlarge the tile by 40%
       backgroundColor: theme.palette.primary.main, // Change background color when hovered
 	  color: theme.palette.primary.contrastText,
+	  zIndex: '999', // Set a higher z-index value
     },
   },
 }));

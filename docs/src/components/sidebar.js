@@ -55,8 +55,8 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2),
   },
   avatar: {
-    width: theme.spacing(24),
-    height: theme.spacing(24),
+    width: '13vw',
+    height: '15vw',
     marginBottom: theme.spacing(2),
   },
   description: {
@@ -67,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
     margin: `${theme.spacing(2)}px 0`,
   },
   icon: {
-    fontSize: 40,
+    fontSize: '2.6vw',
     color: theme.palette.text.secondary,
     transition: 'color 0.3s ease',
     '&:hover': {
