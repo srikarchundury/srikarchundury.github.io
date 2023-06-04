@@ -94,9 +94,9 @@ const useStyles = makeStyles((theme) => ({
 
 const sections = [
 	{ title: 'About Me', content: 'resume', icon: <InfoIcon /> },
-	{ title: 'Life', content: 'life', icon: <EmojiObjectsOutlined /> },
-	{ title: 'Books', content: 'books', icon: <LibraryBooks /> },
-	{ title: 'Songs', content: 'songs', icon: <MusicNote /> },
+	//{ title: 'Life', content: 'life', icon: <EmojiObjectsOutlined /> },
+	//{ title: 'Books', content: 'books', icon: <LibraryBooks /> },
+	//{ title: 'Songs', content: 'songs', icon: <MusicNote /> },
 ];
 
 function Sidebar({ setCurrentPage }) {
