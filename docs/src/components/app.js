@@ -3,10 +3,11 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
 import Sidebar from './sidebar';
 import Resume from './../pages/resume';
-import Blog from './../pages/blog';
-import BookDiscussions from './../pages/bookDiscussions';
-import RandomRant from './../pages/randomRant';
-import Philosophy from './../pages/philosophy';
+import Stuff from '../pages/stuff';
+
+import lifeData from './../data/life.json';
+import songsData from './../data/songs.json';
+import booksData from './../data/books.json';
 
 const useStyles = makeStyles((theme) => ({
 	appBar: {
@@ -22,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
 		textAlign: 'left',
 	},
 	sidebar: {
-		width: '20%',
+		width: '15%',
 		flexGrow: 1,
 		position: 'fixed',
 		overflowY: 'auto',
@@ -31,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
 		zIndex: theme.zIndex.drawer,
 	},
 	pageContent: {
-		marginLeft: '20%',
+		marginLeft: '15%',
 		flexGrow: 1,
 		padding: '3%',
 		paddingBottom: '5%',
@@ -58,14 +59,12 @@ function App() {
 		switch (currentPage) {
 			case 'resume':
 				return <Resume />;
-			case 'blog':
-				return <Blog />;
-			case 'book-discussions':
-				return <BookDiscussions />;
-			case 'random-rant':
-				return <RandomRant />;
-			case 'philosophy':
-				return <Philosophy />;
+			case 'books':
+				return <Stuff tilesData={booksData} />;
+			case 'songs':
+				return <Stuff tilesData={songsData} />;
+			case 'life':
+				return <Stuff tilesData={lifeData} />;
 			default:
 				return null;
 		}

@@ -17,29 +17,30 @@ import InstagramIcon from '@material-ui/icons/Instagram';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import InfoIcon from '@material-ui/icons/Info';
-import HelpIcon from '@material-ui/icons/Help';
-import SportsSoccerIcon from '@material-ui/icons/SportsSoccer';
+import LibraryBooks from '@material-ui/icons/LibraryBooks';
+import EmojiObjectsOutlined from '@material-ui/icons/EmojiObjectsOutlined';
+import MusicNote from '@material-ui/icons/MusicNote';
 
 const useStyles = makeStyles((theme) => ({
 	sidebarContainer: {
 		padding: theme.spacing(3),
 	},
 	drawer: {
-		width: '20%',
+		width: '15%',
 		[theme.breakpoints.down('sm')]: {
-			width: '20%',
+			width: '15%',
 		},
 		[theme.breakpoints.down('xs')]: {
-			width: '20%',
+			width: '15%',
 		},
 	},
 	drawerPaper: {
-		width: '20%',
+		width: '15%',
 		[theme.breakpoints.down('sm')]: {
-			width: '20%',
+			width: '15%',
 		},
 		[theme.breakpoints.down('xs')]: {
-			width: '20%',
+			width: '15%',
 		},
 	},
 	listItem: {
@@ -93,8 +94,9 @@ const useStyles = makeStyles((theme) => ({
 
 const sections = [
 	{ title: 'About Me', content: 'resume', icon: <InfoIcon /> },
-	{ title: 'Life', content: 'philosophy', icon: <SportsSoccerIcon /> },
-	{ title: 'Random', content: 'random-rant', icon: <HelpIcon /> },
+	{ title: 'Life', content: 'life', icon: <EmojiObjectsOutlined /> },
+	{ title: 'Books', content: 'books', icon: <LibraryBooks /> },
+	{ title: 'Songs', content: 'songs', icon: <MusicNote /> },
 ];
 
 function Sidebar({ setCurrentPage }) {
@@ -107,8 +109,8 @@ function Sidebar({ setCurrentPage }) {
 		setSelectedSection(section);
 		setCurrentPage(section.content);
 	};
-	const firstName1 = 'Srikar';
-	const lastName1 = 'Chundury';
+	// const firstName1 = 'Srikar';
+	// const lastName1 = 'Chundury';
 	const firstName2 = 'శ్రీకర్';
 	const lastName2 = 'చుండూరి';
 	const showLastName = !isSmallScreen;
