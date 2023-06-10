@@ -1,14 +1,22 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles((theme) => ({
   pageContainer: {
+	position: 'relative',
     padding: `${theme.spacing(3)}px`,
     display: 'grid',
     gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
     gridGap: `${theme.spacing(3)}px`,
     backgroundColor: theme.palette.background.default,
+  },
+  verticalLine: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    height: "100%",
+    backgroundColor: theme.palette.divider, // Set divider color
   },
   tile: {
     padding: `${theme.spacing(2)}px`,
@@ -40,9 +48,10 @@ const useStyles = makeStyles((theme) => ({
 
 function Stuff(props) {
   const classes = useStyles();
-
+  const theme = useTheme();
   return (
     <div className={classes.pageContainer}>
+		<div className={classes.verticalLine} style={{ backgroundColor: theme.palette.divider }}></div>
       {props.tilesData.map((data, index) => (
         <div key={index} className={classes.tile}>
           {Object.entries(data).map(([key, value]) => (

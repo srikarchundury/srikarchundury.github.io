@@ -12,14 +12,6 @@ import booksData from './../data/books.json';
 import { lightTheme, darkTheme } from './themes';
 
 const useStyles = makeStyles((theme) => ({
-  appBar: {
-    backgroundColor: theme.palette.primary.main,
-    display: 'flex',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    paddingLeft: '0%',
-    zIndex: theme.zIndex.drawer + 1,
-  },
   title: {
     flexGrow: 1,
     textAlign: 'left',
@@ -35,14 +27,15 @@ const useStyles = makeStyles((theme) => ({
   },
   pageContent: {
     marginLeft: '15%', // Adjust this value to match the width of your sidebar
-    marginRight: 0,
-    // flexGrow: 1,
+    flexGrow: 1,
+    position: 'fixed',
     overflowY: 'auto',
-    paddingLeft: 0,
-    paddingBottom: 0,
-    paddingTop: 0,
-    margin: 0, // Remove margin
-    top: 0,
+    padding: 0,
+	top: 0,
+	bottom: 0,
+	left: 0,
+    zIndex: theme.zIndex.drawer,
+    boxSizing: 'border-box',
   },
   footer: {
     backgroundColor: theme.palette.primary.main,
@@ -76,7 +69,7 @@ const useStyles = makeStyles((theme) => ({
 function App() {
   const classes = useStyles();
   const [currentPage, setCurrentPage] = useState('resume');
-  const [currentTheme, setCurrentTheme] = useState(lightTheme);
+  const [currentTheme, setCurrentTheme] = useState(darkTheme);
   const [contentMaxHeight, setContentMaxHeight] = useState('100%');
   const [isHovered, setIsHovered] = useState(false);
 
