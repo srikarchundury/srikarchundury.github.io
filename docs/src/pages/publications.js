@@ -4,13 +4,12 @@ import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles((theme) => ({
   pageContainer: {
-  	position: 'relative',
+	position: 'relative',
     padding: `${theme.spacing(3)}px`,
     display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
     gridGap: `${theme.spacing(3)}px`,
     backgroundColor: theme.palette.background.default,
-    height: '95%',
   },
   verticalLine: {
     position: "absolute",
@@ -20,7 +19,6 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.divider, // Set divider color
   },
   tile: {
-    height: '30vh',
     padding: `${theme.spacing(2)}px`,
     border: `1px solid ${theme.palette.grey[300]}`,
     boxShadow: `0px ${theme.spacing(0.3)}px ${theme.spacing(0.8)}px rgba(0, 0, 0, 0.2)`,
@@ -48,13 +46,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Stuff(props) {
+function Publications(props) {
   const classes = useStyles();
   const theme = useTheme();
   return (
     <div className={classes.pageContainer}>
 		<div className={classes.verticalLine} style={{ backgroundColor: theme.palette.divider }}></div>
-      {props.tilesData.map((data, index) => (
+      {props.data.map((data, index) => (
         <div key={index} className={classes.tile}>
           {Object.entries(data).map(([key, value]) => (
             <React.Fragment key={key}>
@@ -68,4 +66,4 @@ function Stuff(props) {
   );
 }
 
-export default Stuff;
+export default Publications;

@@ -19,6 +19,7 @@ import InfoIcon from "@material-ui/icons/Info";
 import LibraryBooks from "@material-ui/icons/LibraryBooks";
 import EmojiObjectsOutlined from "@material-ui/icons/EmojiObjectsOutlined";
 import MusicNote from "@material-ui/icons/MusicNote";
+import DescriptionIcon from "@material-ui/icons/Description";
 
 const useStyles = makeStyles((theme) => ({
   sidebarContainer: {
@@ -101,9 +102,10 @@ const useStyles = makeStyles((theme) => ({
 
 const sections = [
   { title: "About Me", content: "resume", icon: <InfoIcon /> },
-//   { title: "Life", content: "life", icon: <EmojiObjectsOutlined /> },
-//   { title: "Books", content: "books", icon: <LibraryBooks /> },
-//   { title: "Songs", content: "songs", icon: <MusicNote /> },
+  { title: "Publications", content: "publications", icon: <DescriptionIcon /> },
+  { title: "Philosophies", content: "life", icon: <EmojiObjectsOutlined /> },
+  { title: "Leisure Reading", content: "books", icon: <LibraryBooks /> },
+  // { title: "Songs", content: "songs", icon: <MusicNote /> },
 ];
 
 const ThemeContext = React.createContext();
@@ -120,8 +122,10 @@ function Sidebar({ setCurrentPage }) {
     setCurrentPage(section.content);
   };
 
-  const firstName2 = "శ్రీకర్";
-  const lastName2 = "చుండూరి";
+  // const firstName2 = "శ్రీకర్";
+  // const lastName2 = "చుండూరి";
+  const firstName2 = "Srikar";
+  const lastName2 = "Chundury";
   const showLastName = !isSmallScreen;
 
   function Section({ section }) {

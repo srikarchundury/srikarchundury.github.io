@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { makeStyles, ThemeProvider } from '@material-ui/core/styles';
+import { makeStyles, ThemeProvider, useTheme } from '@material-ui/core/styles';
 import { Typography, IconButton, Tooltip } from '@material-ui/core';
 import { Brightness4, Brightness7 } from '@material-ui/icons';
 import Sidebar from './sidebar';
 import Resume from './../pages/resume';
 import Stuff from '../pages/stuff';
+import Publications from '../pages/publications';
 
 import lifeData from './../data/life.json';
 import songsData from './../data/songs.json';
 import booksData from './../data/books.json';
+import publicationsData from './../data/publications.json';
 import { lightTheme, darkTheme } from './themes';
 
 const useStyles = makeStyles((theme) => ({
@@ -16,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     textAlign: 'left',
   },
-  sidebar: {
+  sidebar: { 
     width: '15%',
     flexGrow: 1,
     position: 'fixed',
@@ -31,9 +33,9 @@ const useStyles = makeStyles((theme) => ({
     position: 'fixed',
     overflowY: 'auto',
     padding: 0,
-	top: 0,
-	bottom: 0,
-	left: 0,
+    top: 0,
+    bottom: 0,
+    left: 0,
     zIndex: theme.zIndex.drawer,
     boxSizing: 'border-box',
   },
@@ -68,9 +70,16 @@ const useStyles = makeStyles((theme) => ({
 
 function App() {
   const classes = useStyles();
+  const theme = useTheme();
   const [currentPage, setCurrentPage] = useState('resume');
-  const [currentTheme, setCurrentTheme] = useState(darkTheme);
-  const [contentMaxHeight, setContentMaxHeight] = useState('100%');
+
+  // Function to get a random theme
+  function getRandomTheme() {
+    return Math.random() < 0.5 ? lightTheme : darkTheme; // 50% chance of lightTheme, 50% chance of darkTheme
+  }
+  const [currentTheme, setCurrentTheme] = useState(getRandomTheme()); // Initial theme selection
+
+  const [contentHeight, setContentHeight] = useState('100%');
   const [isHovered, setIsHovered] = useState(false);
 
   const toggleMode = () => {
@@ -81,8 +90,8 @@ function App() {
     const handleResize = () => {
       const windowHeight = window.innerHeight;
       const footerHeight = document.getElementById('footer').offsetHeight;
-      const pageContentMaxHeight = windowHeight - footerHeight;
-      setContentMaxHeight(`${pageContentMaxHeight}px`);
+      const pageContentHeight = windowHeight - footerHeight;
+      setContentHeight(`${pageContentHeight}px`);
     };
 
     window.addEventListener('resize', handleResize);
@@ -103,6 +112,9 @@ function App() {
         return <Stuff tilesData={songsData} />;
       case 'life':
         return <Stuff tilesData={lifeData} />;
+      case 'publications':
+        // return <Publications data={publicationsData} />;
+        return <Stuff tilesData={publicationsData} />
       default:
         return null;
     }
@@ -116,7 +128,7 @@ function App() {
           <Sidebar setCurrentPage={setCurrentPage} />
         </div>
 
-        <div className={classes.pageContent} style={{ maxHeight: contentMaxHeight }}>
+        <div className={classes.pageContent} style={{ height: contentHeight, width: '85%'}}>
           {renderPage()}
         </div>
 
@@ -157,12 +169,12 @@ function App() {
           </div>
           <div>
             <Typography variant="body2" color="inherit">
-              &copy; {currentYear} Srikar Chundury. All rights reserved.
+              &copy; {currentYear} Srikar Chundury. Some Rights Reserved.
             </Typography>
           </div>
           <div className={classes.poweredBy}>
             <Typography variant="body2" color="inherit">
-              Powered by Material-UI and ChatGPT
+              Powered by Material-UI
             </Typography>
           </div>
         </footer>

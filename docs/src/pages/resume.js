@@ -79,7 +79,7 @@ function Resume() {
   return (
     <div className={classes.pageContainer}>
 		<div className={classes.verticalLine} style={{ backgroundColor: theme.palette.divider }}></div>
-      <Box mb={4}>
+      {/* <Box mb={4}>
         <Typography
           variant="h3"
           align="center"
@@ -88,7 +88,7 @@ function Resume() {
         >
           Srikar Chundury
         </Typography>
-      </Box>
+      </Box> */}
 
       <Divider
         variant="middle"
@@ -114,7 +114,7 @@ function Resume() {
                   May 2023 – Present
                 </Typography>
                 <Typography className={classes.description}>
-                  I am currently employed as a member of the Quantum Natural
+                  I am a collaborator in the Quantum Natural
                   Language Processing group, led by Dr. In-Saeng Suh. My role
                   entails engaging in the formulation, development, and
                   enhancement of high-performance libraries utilized in quantum
