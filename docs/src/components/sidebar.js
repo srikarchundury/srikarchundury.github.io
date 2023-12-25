@@ -9,6 +9,7 @@ import {
   useMediaQuery,
   Divider,
   Avatar,
+  Button,
 } from "@material-ui/core";
 import LinkedInIcon from "@material-ui/icons/LinkedIn";
 import GitHubIcon from "@material-ui/icons/GitHub";
@@ -16,6 +17,8 @@ import InstagramIcon from "@material-ui/icons/Instagram";
 import FacebookIcon from "@material-ui/icons/Facebook";
 import TwitterIcon from "@material-ui/icons/Twitter";
 import InfoIcon from "@material-ui/icons/Info";
+import WorkIcon from "@material-ui/icons/Work";
+import CodeIcon from "@material-ui/icons/Code";
 import LibraryBooks from "@material-ui/icons/LibraryBooks";
 import EmojiObjectsOutlined from "@material-ui/icons/EmojiObjectsOutlined";
 import MusicNote from "@material-ui/icons/MusicNote";
@@ -51,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   listItemText: {
-    fontSize: "1.2rem",
+    fontSize: "1rem",
     marginLeft: theme.spacing(2),
     color: theme.palette.text.primary, // Set text color
   },
@@ -73,13 +76,13 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2),
   },
   avatar: {
-    width: "13vw",
-    height: "15vw",
+    width: "8vw",
+    height: "10vw",
     marginBottom: theme.spacing(2),
   },
   description: {
     textAlign: "center",
-    fontSize: "2rem",
+    fontSize: "1.5rem",
     color: theme.palette.text.primary, // Set text color
   },
   divider: {
@@ -94,6 +97,13 @@ const useStyles = makeStyles((theme) => ({
       color: theme.palette.primary.main,
     },
   },
+  button: {
+    backgroundColor: theme.palette.primary.main,
+    color: theme.palette.primary.contrastText,
+    "&:hover": {
+      backgroundColor: theme.palette.primary.main,
+    },
+  },
   socialIcons: {
     justifyContent: "space-between",
     marginTop: theme.spacing(2),
@@ -101,7 +111,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const sections = [
-  { title: "About Me", content: "resume", icon: <InfoIcon /> },
+  { title: "Timeline", content: "milestones", icon: <InfoIcon /> },
+  { title: "Work, Research, Education", content: "work", icon: <WorkIcon />},
+  { title: "Skills & Projects", content: "skills", icon: <CodeIcon />},
   { title: "Publications", content: "publications", icon: <DescriptionIcon /> },
   { title: "Philosophies", content: "life", icon: <EmojiObjectsOutlined /> },
   { title: "Leisure Reading", content: "books", icon: <LibraryBooks /> },
@@ -120,6 +132,10 @@ function Sidebar({ setCurrentPage }) {
   const handleSectionClick = (section) => {
     setSelectedSection(section);
     setCurrentPage(section.content);
+  };
+
+  const handleDownloadResume = () => {
+    window.open(process.env.PUBLIC_URL + "/Resume.pdf", "_blank");
   };
 
   // const firstName2 = "శ్రీకర్";
@@ -211,6 +227,16 @@ function Sidebar({ setCurrentPage }) {
                 {showLastName && " " + lastName2}
               </Typography>
             )}
+
+            <Divider className={classes.divider} />
+
+            <Button
+              variant="contained"
+              className={classes.button}
+              onClick={handleDownloadResume}
+            >
+              Resume
+            </Button>
 
             <div className={classes.socialIcons}>
               <a

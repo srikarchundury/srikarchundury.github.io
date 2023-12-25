@@ -38,6 +38,7 @@
 	"homepage": "https://srikarchundury.github.io/",
 	"dependencies": {
 		"@material-ui/icons": "^4.11.3",
+		"@material-ui/lab": "^4.0.0-alpha.61",
 		"react": "^17.0.2",
 		"react-dom": "^17.0.2",
 		"react-h5-audio-player": "^3.8.6",

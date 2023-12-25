@@ -4,6 +4,7 @@ import { Typography, IconButton, Tooltip } from '@material-ui/core';
 import { Brightness4, Brightness7 } from '@material-ui/icons';
 import Sidebar from './sidebar';
 import Resume from './../pages/resume';
+import Milestones from './../pages/milestones';
 import Stuff from '../pages/stuff';
 import Publications from '../pages/publications';
 
@@ -71,7 +72,7 @@ const useStyles = makeStyles((theme) => ({
 function App() {
   const classes = useStyles();
   const theme = useTheme();
-  const [currentPage, setCurrentPage] = useState('resume');
+  const [currentPage, setCurrentPage] = useState('milestones');
 
   // Function to get a random theme
   function getRandomTheme() {
@@ -104,8 +105,12 @@ function App() {
 
   const renderPage = () => {
     switch (currentPage) {
-      case 'resume':
-        return <Resume />;
+      case 'work':
+        return <Resume scrollTo="work" />;
+      case 'skills':
+        return <Resume scrollTo="skills" />;
+      case 'milestones':
+        return <Milestones />;
       case 'books':
         return <Stuff tilesData={booksData} />;
       case 'songs':
