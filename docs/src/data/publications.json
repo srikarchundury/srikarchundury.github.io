@@ -1,5 +1,5 @@
 [
-	{"Spark Version Study": "ACM International Conference on Performance Engineering (2019)"},
-	{"A Novel Approach to Sparsity in Quantum Simulations": "QSim, Telluride, Colorado, USA and QCUF, ORNL, USA (2023)"},
-	{"A PEPS Plugin for TNQVM": "IEEE International Conference for Quantum Computing and Software Engineering (2023)"}
+	{"Spark Version Study": {"publication": "ACM International Conference on Performance Engineering (2019)", "link": "https://dl.acm.org/doi/abs/10.1145/3302541.3311963"}},
+	{"A Novel Approach to Sparsity in Quantum Simulations": {"publication": "QSim, Telluride, Colorado, USA and QCUF, ORNL, USA (2023)", "link": "https://arcb.csc.ncsu.edu/~mueller/ftp/pub/mueller/papers/qsim23-1.pdf"}},
+	{"A PEPS Plugin for TNQVM": {"publication": "IEEE International Conference for Quantum Computing and Software Engineering (2023)", "link": "https://ieeexplore.ieee.org/document/10313902"}}
 ]

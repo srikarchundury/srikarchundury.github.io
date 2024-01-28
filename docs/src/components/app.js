@@ -118,8 +118,7 @@ function App() {
       case 'life':
         return <Stuff tilesData={lifeData} />;
       case 'publications':
-        // return <Publications data={publicationsData} />;
-        return <Stuff tilesData={publicationsData} />
+        return <Publications tilesData={publicationsData} />
       default:
         return null;
     }

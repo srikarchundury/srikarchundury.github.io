@@ -115,8 +115,8 @@ const sections = [
   { title: "Work, Research, Education", content: "work", icon: <WorkIcon />},
   { title: "Skills & Projects", content: "skills", icon: <CodeIcon />},
   { title: "Publications", content: "publications", icon: <DescriptionIcon /> },
-  { title: "Philosophies", content: "life", icon: <EmojiObjectsOutlined /> },
-  { title: "Leisure Reading", content: "books", icon: <LibraryBooks /> },
+  // { title: "Philosophies", content: "life", icon: <EmojiObjectsOutlined /> },
+  // { title: "Leisure Reading", content: "books", icon: <LibraryBooks /> },
   // { title: "Songs", content: "songs", icon: <MusicNote /> },
 ];
 
