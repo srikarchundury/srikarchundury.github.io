@@ -135,6 +135,24 @@ function Resume(props) {
                   <Box>
                     <Box>
                       <Typography variant="subtitle1" className={classes.subtitle}>
+                        Research Intern
+                      </Typography>
+                      <Typography variant="body2" className={classes.company}>
+                        Oak Ridge National Laboratory, Tennessee
+                      </Typography>
+                      <Typography variant="body2" className={classes.date}>
+                        May 2024 – August 2024
+                      </Typography>
+                      <Typography className={classes.description}>
+                          Continued graduate research under Dr. In-Saeng Suh & Dr. Frank Mueller, working on the novel sparse data format DiaQ and contributed to showcasing a hybrid QC-HPC ecosystem via QFw: A Quantum Framework for HPC-QC integration. Awarded best poster at QCUF 2024 and nominated for Best Poster at Super Computing 2024.
+                      </Typography>
+                    </Box>
+                  </Box>
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <Box>
+                    <Box>
+                      <Typography variant="subtitle1" className={classes.subtitle}>
                         Graduate Research Intern
                       </Typography>
                       <Typography variant="body2" className={classes.company}>
@@ -255,16 +273,16 @@ function Resume(props) {
               <Grid container spacing={2}>
                 <Grid item xs={12} md={6}>
                   <Typography variant="subtitle1" className={classes.subtitle1}>
-                    <strong>Master of Science in Computer Science</strong>
+                    <strong>Ph.D. in Computer Science</strong>
                     <br />
-                    Aug 2022 – May 2024
+                    Aug 2022 – May 2027
                   </Typography>
                   <Typography className={classes.description}>
                     North Carolina State University, Raleigh, NC
                     <br />
                     GPA – 3.95/4.0
                     <br />
-                    Courses: Quantum Computing, Resource-dependent Deep Learning, Algorithms, Graph Theory, Parallel Systems, Efficient Tensor Computation for AI, Operating System Principles
+                    Relevant Courses: Quantum Computing, Resource-dependent Deep Learning, Graph Theory, Parallel Systems, Efficient Tensor Computation for AI, Real-time AI \& Machine Learning Systems.
                   </Typography>
                 </Grid>
                 <Grid item xs={12} md={6}>
@@ -301,7 +319,7 @@ function Resume(props) {
                 <strong>Languages:</strong> C++, Python, Go, C, R, SQL, JavaScript, JSX, CSS, HTML
               </Typography>
               <Typography className={classes.description}>
-                <strong>Frameworks/Technologies:</strong> Flask, Hadoop, Spark, Redis, PostgreSQL, MariaDB, InfluxDB, MongoDB, Ansible, Jenkins, Docker, Kubernetes, TensorFlow, PyTorch, Horovod, Qiskit, Cirq, Quimb, D-wave, React, LATEX
+                <strong>Frameworks/Technologies:</strong> Flask, Hadoop, Spark, Redis, PostgreSQL, MariaDB, InfluxDB, MongoDB, Ansible, Jenkins, Docker, Kubernetes, TensorFlow, PyTorch, Horovod, Qiskit, Cirq, Quimb, D-wave, React, LATEX, Apache TVM.
               </Typography>
             </Box>
             <br />

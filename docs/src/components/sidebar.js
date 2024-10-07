@@ -90,7 +90,8 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.divider, // Set divider color
   },
   icon: {
-    fontSize: "2.5rem",
+    fontSize: "2rem",
+    padding: "0.5rem",
     color: theme.palette.text.secondary,
     transition: "color 0.3s ease",
     "&:hover": {
@@ -227,6 +228,10 @@ function Sidebar({ setCurrentPage }) {
                 {showLastName && " " + lastName2}
               </Typography>
             )}
+
+            <Typography variant="subtitle3">
+              Hardware-aware Software Engineer and Researcher
+            </Typography>
 
             <Divider className={classes.divider} />
 

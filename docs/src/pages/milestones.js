@@ -158,10 +158,15 @@ function Milestones() {
 		icon: <PublicIcon />,
 	},
 	{
-		title: 'Decision to Pursue PhD',
+		title: 'PhD',
 		note: 'By the support of my mentors, decided to embark on the exciting path of a Ph.D., fueled by a passion for research and innovation.',
 		icon: <EmojiObjectsIcon />,
 	},
+  {
+    title: 'Internship at Oak Ridge National Labs',
+    note: 'Best Poster at QCUF 2024 for work under Amir Shehata and Dr. In-Saeng Suh on Quantum Framework for HPC-QC integrated ecosystem.',
+    icon: <WorkIcon />,
+  },
 	// You can continue adding milestones here as per your timeline
 ];
 
