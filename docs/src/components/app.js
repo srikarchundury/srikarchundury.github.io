@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
     // padding: '3%',
     zIndex: theme.zIndex.drawer,
     boxSizing: 'border-box',
-    width: '16vw'
+    width: '15vw',
   },
   pageContent: {
     marginLeft: '15vw',
