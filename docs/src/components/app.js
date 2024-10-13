@@ -13,24 +13,27 @@ import songsData from './../data/songs.json';
 import booksData from './../data/books.json';
 import publicationsData from './../data/publications.json';
 import { lightTheme, darkTheme } from './themes';
+import { dark } from '@material-ui/core/styles/createPalette';
 
 const useStyles = makeStyles((theme) => ({
+  copyright: {
+    fontSize: '0.8vw',
+  },
   title: {
     flexGrow: 1,
     textAlign: 'left',
   },
-  sidebar: { 
-    width: '15%',
+  sidebar: {
     flexGrow: 1,
     position: 'fixed',
     overflowY: 'auto',
     padding: '3%',
     zIndex: theme.zIndex.drawer,
     boxSizing: 'border-box',
+    width: '15vw'
   },
   pageContent: {
-    marginLeft: '15%', // Adjust this value to match the width of your sidebar
-    flexGrow: 1,
+    marginLeft: '15vw',
     position: 'fixed',
     overflowY: 'auto',
     padding: 0,
@@ -50,11 +53,12 @@ const useStyles = makeStyles((theme) => ({
     left: 0,
     bottom: 0,
     width: '100%',
+    height: '2vw',
     zIndex: theme.zIndex.drawer + 1,
     paddingBottom: '0%', // Adjust the value as needed
   },
   toggleIcon: {
-    fontSize: '2.5rem',
+    fontSize: '2vw',
     transition: 'color 0.3s ease',
     color: theme.palette.type === 'dark' ? theme.palette.primary.light : theme.palette.primary.dark,
     '&:hover': {
@@ -76,7 +80,8 @@ function App() {
 
   // Function to get a random theme
   function getRandomTheme() {
-    return Math.random() < 0.5 ? lightTheme : darkTheme; // 50% chance of lightTheme, 50% chance of darkTheme
+    // return Math.random() < 0.5 ? lightTheme : darkTheme; // 50% chance of lightTheme, 50% chance of darkTheme
+    return darkTheme; // Always return darkTheme
   }
   const [currentTheme, setCurrentTheme] = useState(getRandomTheme()); // Initial theme selection
 
@@ -132,7 +137,7 @@ function App() {
           <Sidebar setCurrentPage={setCurrentPage} />
         </div>
 
-        <div className={classes.pageContent} style={{ height: contentHeight, width: '85%'}}>
+        <div className={classes.pageContent}>
           {renderPage()}
         </div>
 
@@ -172,12 +177,12 @@ function App() {
         </Tooltip>
           </div>
           <div>
-            <Typography variant="body2" color="inherit">
+            <Typography className={classes.copyright}>
               &copy; {currentYear} Srikar Chundury. Some Rights Reserved.
             </Typography>
           </div>
           <div className={classes.poweredBy}>
-            <Typography variant="body2" color="inherit">
+            <Typography className={classes.copyright}>
               Powered by Material-UI
             </Typography>
           </div>

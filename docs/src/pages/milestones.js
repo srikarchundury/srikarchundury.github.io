@@ -21,7 +21,10 @@ import EmojiObjectsIcon from '@material-ui/icons/EmojiObjects';
 const useStyles = makeStyles((theme) => ({
   pageContainer: {
     position: 'relative',
-    padding: theme.spacing(3),
+    // padding: '3vh',
+    paddingTop: '3vw',
+    paddingBottom: '3vw',
+    paddingLeft: '1vw',
     backgroundColor: theme.palette.background.default,
   },
   timelineItem: {
@@ -37,11 +40,11 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   timelineIcon: {
-    padding: theme.spacing(2),
-    marginRight: theme.spacing(2),
-    marginLeft: theme.spacing(2),
-    border: `1px solid ${theme.palette.grey[300]}`,
-    borderRadius: theme.spacing(1),
+    padding: '2vh',
+    marginRight: '2vw',
+    marginLeft: '2vw',
+    border: `0.1vh solid ${theme.palette.grey[300]}`,
+    borderRadius: '1vh',
     color: theme.palette.text.secondary,
     backgroundColor: theme.palette.background.paper,
     transition: 'transform 0.3s, background-color 0.2s',
@@ -52,11 +55,21 @@ const useStyles = makeStyles((theme) => ({
         color: theme.palette.primary.contrastText,
       },
     },
+    [theme.breakpoints.down('sm')]: {
+      padding: '1vh',
+      marginRight: '1vw',
+      marginLeft: '1vw',
+    },
+    [theme.breakpoints.down('xs')]: {
+      padding: '0.5vh',
+      marginRight: '0.5vw',
+      marginLeft: '0.5vw',
+    },
   },
   timelineContent: {
-    padding: theme.spacing(2),
-    border: `1px solid ${theme.palette.grey[300]}`,
-    borderRadius: theme.spacing(1),
+    padding: '2vh',
+    border: `0.1vh solid ${theme.palette.grey[300]}`,
+    borderRadius: '1vh',
     backgroundColor: theme.palette.background.paper,
     transition: 'transform 0.3s, background-color 0.2s',
     '&:hover': {
@@ -66,24 +79,36 @@ const useStyles = makeStyles((theme) => ({
         color: theme.palette.primary.contrastText,
       },
     },
+    [theme.breakpoints.down('sm')]: {
+      padding: '1vh',
+    },
+    [theme.breakpoints.down('xs')]: {
+      padding: '0.5vh',
+    },
   },
   title: {
-    fontSize: '1.2rem',
+    fontSize: '2.4vh',
     fontWeight: 'bold',
-    marginBottom: theme.spacing(1),
+    marginBottom: '1vh',
     color: theme.palette.text.primary,
     transition: 'color 0.2s',
     [theme.breakpoints.down('sm')]: {
-      fontSize: '0.6rem', // Adjust font size for smaller screens
+      fontSize: '2vh', // Adjust font size for smaller screens
+    },
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '1.6vh', // Adjust font size for extra small screens
     },
   },
   content: {
-    fontSize: '0.9rem',
-    marginBottom: theme.spacing(2),
+    fontSize: '1.8vh',
+    marginBottom: '2vh',
     color: theme.palette.text.secondary,
     transition: 'color 0.2s',
     [theme.breakpoints.down('sm')]: {
-      fontSize: '0.4rem', // Adjust font size for smaller screens
+      fontSize: '1.6vh', // Adjust font size for smaller screens
+    },
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '1.4vh', // Adjust font size for extra small screens
     },
   },
 }));
@@ -183,10 +208,10 @@ function Milestones() {
               {index !== milestones.length - 1 && <TimelineConnector />}
             </TimelineSeparator>
             <TimelineContent className={classes.timelineContent}>
-              <Typography variant="h6" className={classes.title}>
+              <Typography className={classes.title}>
                 {milestone.title}
               </Typography>
-              <Typography variant="body1" className={classes.content}>
+              <Typography className={classes.content}>
                 {milestone.note}
               </Typography>
             </TimelineContent>

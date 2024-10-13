@@ -11,8 +11,11 @@ import {
 
 const useStyles = makeStyles((theme) => ({
   pageContainer: {
-	  position: 'relative',
-    padding: theme.spacing(3),
+    position: 'relative',
+    // padding: '3vw',
+    paddingTop: '3vw',
+    paddingBottom: '3vw',
+    paddingLeft: '1vw',
     backgroundColor: theme.palette.background.default,
   },
   verticalLine: {
@@ -25,42 +28,44 @@ const useStyles = makeStyles((theme) => ({
   sectionTitle: {
     display: "flex",
     alignItems: "center",
-    marginBottom: theme.spacing(2),
+    marginBottom: '1vw',
     fontWeight: "bold",
     color: theme.palette.text.primary,
+    fontSize: '1.5vw',
   },
   icon: {
-    marginRight: theme.spacing(1),
+    fontSize: '1.5vw',
+    marginRight: '1vw',
     color: theme.palette.primary.main,
   },
   subtitle: {
-    fontSize: theme.typography.subtitle1.fontSize,
+    fontSize: '1vw',
     color: theme.palette.text.primary,
   },
   name: {
-    fontSize: theme.typography.h3.fontSize,
+    fontSize: '2vw',
     color: theme.palette.text.primary,
   },
   company: {
-    fontSize: theme.typography.body2.fontSize,
+    fontSize: '0.8vw',
     fontWeight: "bold",
     color: theme.palette.text.primary,
   },
   date: {
-    fontSize: theme.typography.body2.fontSize,
+    fontSize: '0.8vw',
     color: theme.palette.text.primary,
   },
   subtitle1: {
     color: theme.palette.text.primary,
   },
   description: {
-    marginTop: theme.spacing(1),
-    fontSize: theme.typography.body2.fontSize,
+    marginTop: '0.7vw',
+    fontSize: '0.7vw',
     color: theme.palette.text.primary,
   },
   skills: {
-    marginTop: theme.spacing(1),
-    fontSize: theme.typography.body2.fontSize,
+    // marginTop: '1vw',
+    fontSize: '0.8vw',
     color: theme.palette.text.primary,
   },
   link: {
@@ -272,7 +277,7 @@ function Resume(props) {
               </Typography>
               <Grid container spacing={2}>
                 <Grid item xs={12} md={6}>
-                  <Typography variant="subtitle1" className={classes.subtitle1}>
+                  <Typography variant="subtitle1" className={classes.subtitle}>
                     <strong>Ph.D. in Computer Science</strong>
                     <br />
                     Aug 2022 – May 2027
@@ -286,7 +291,18 @@ function Resume(props) {
                   </Typography>
                 </Grid>
                 <Grid item xs={12} md={6}>
-                  <Typography variant="subtitle1" className={classes.subtitle1}>
+                  <Typography variant="subtitle1" className={classes.subtitle}>
+                    <strong>MS in Computer Science</strong>
+                    <br />
+                    Aug 2022 – May 2024
+                  </Typography>
+                  <Typography className={classes.description}>
+                    North Carolina State University, Raleigh, NC <br/>
+                    <strong> Master's Thesis: "DiaQ: A Novel Quantum-Tailored Numerical Format" </strong>
+                  </Typography>
+                </Grid>
+                <Grid item xs={12} md={6}>
+                  <Typography variant="subtitle1" className={classes.subtitle}>
                     <strong>
                       Bachelor of Technology in Computer Science and Engineering
                     </strong>
@@ -315,10 +331,10 @@ function Resume(props) {
                 <CodeIcon className={classes.icon} />
                 Skills
               </Typography>
-              <Typography className={classes.description}>
+              <Typography className={classes.skills}>
                 <strong>Languages:</strong> C++, Python, Go, C, R, SQL, JavaScript, JSX, CSS, HTML
               </Typography>
-              <Typography className={classes.description}>
+              <Typography className={classes.skills}>
                 <strong>Frameworks/Technologies:</strong> Flask, Hadoop, Spark, Redis, PostgreSQL, MariaDB, InfluxDB, MongoDB, Ansible, Jenkins, Docker, Kubernetes, TensorFlow, PyTorch, Horovod, Qiskit, Cirq, Quimb, D-wave, React, LATEX, Apache TVM.
               </Typography>
             </Box>

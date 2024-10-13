@@ -25,37 +25,56 @@ import MusicNote from "@material-ui/icons/MusicNote";
 import DescriptionIcon from "@material-ui/icons/Description";
 
 const useStyles = makeStyles((theme) => ({
+  sectionItem: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    fontSize: "1.5vw",
+  },
+  listOfContent: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    padding: 0,
+  },
+  heading: {
+    fontSize: "1.5vw",
+    color: theme.palette.text.primary, // Set text color
+    textAlign: "center",
+  },
+  subheading: {
+    fontSize: "0.8vw",
+    color: theme.palette.text.secondary, // Set text color
+    textAlign: "center",
+  },
   sidebarContainer: {
-    padding: theme.spacing(3),
+    padding: "2.5vw",
     backgroundColor: theme.palette.background.default, // Set background color
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
   },
   drawer: {
-    width: "15%",
-    [theme.breakpoints.down("sm")]: {
-      width: "15%",
-    },
-    [theme.breakpoints.down("xs")]: {
-      width: "15%",
-    },
+    width: "15vw",
   },
   drawerPaper: {
-    width: "15%",
-    [theme.breakpoints.down("sm")]: {
-      width: "15%",
-    },
-    [theme.breakpoints.down("xs")]: {
-      width: "15%",
-    },
+    width: "15vw",
     backgroundColor: theme.palette.background.default, // Set background color
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
   },
   listItem: {
     "&:hover": {
       backgroundColor: theme.palette.action.hover,
     },
+    display: "flex",
+    justifyContent: "left",
+    alignItems: "center",
   },
   listItemText: {
-    fontSize: "1rem",
-    marginLeft: theme.spacing(2),
+    fontSize: "1.5vw",
+    marginLeft: "0.5vw",
     color: theme.palette.text.primary, // Set text color
   },
   selected: {
@@ -64,7 +83,6 @@ const useStyles = makeStyles((theme) => ({
     "&:hover": {
       backgroundColor: theme.palette.primary.main,
     },
-    // Add the following lines
     "& .MuiListItemText-primary": {
       color: theme.palette.primary.contrastText,
     },
@@ -73,52 +91,62 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    padding: theme.spacing(2),
+    // padding: "2vw",
   },
   avatar: {
-    width: "8vw",
+    width: "6vw",
     height: "10vw",
-    marginBottom: theme.spacing(2),
-  },
-  description: {
-    textAlign: "center",
-    fontSize: "1.5rem",
-    color: theme.palette.text.primary, // Set text color
+    marginBottom: "1.5vw",
   },
   divider: {
-    margin: `${theme.spacing(2)}px 0`,
+    margin: "2vw 0",
+    marginTop: "1vw",
+    fontColor: theme.palette.divider, // Set divider color
     backgroundColor: theme.palette.divider, // Set divider color
+    width: "15vw",
+    // fontWeight: "bold",
   },
   icon: {
-    fontSize: "2rem",
-    padding: "0.5rem",
+    fontSize: "2vw",
+    padding: "0.5vw",
     color: theme.palette.text.secondary,
     transition: "color 0.3s ease",
     "&:hover": {
       color: theme.palette.primary.main,
     },
   },
+  listIcon : {
+    fontSize: "1.5vw",
+    color: theme.palette.text.secondary
+  },
   button: {
+    fontSize: "0.8vw",
     backgroundColor: theme.palette.primary.main,
     color: theme.palette.primary.contrastText,
     "&:hover": {
       backgroundColor: theme.palette.primary.main,
     },
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    width: "4vw",
   },
   socialIcons: {
-    justifyContent: "space-between",
-    marginTop: theme.spacing(2),
+    display: "justify",
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: "1vw",
   },
 }));
 
 const sections = [
-  { title: "Timeline", content: "milestones", icon: <InfoIcon /> },
-  { title: "Work, Research, Education", content: "work", icon: <WorkIcon />},
-  { title: "Skills & Projects", content: "skills", icon: <CodeIcon />},
-  { title: "Publications", content: "publications", icon: <DescriptionIcon /> },
-  // { title: "Philosophies", content: "life", icon: <EmojiObjectsOutlined /> },
-  // { title: "Leisure Reading", content: "books", icon: <LibraryBooks /> },
-  // { title: "Songs", content: "songs", icon: <MusicNote /> },
+  { title: "Timeline", content: "milestones", icon: <InfoIcon  /> },
+  { title: "Work/Research", content: "work", icon: <WorkIcon  /> },
+  { title: "Skills", content: "skills", icon: <CodeIcon  /> },
+  { title: "Publications", content: "publications", icon: <DescriptionIcon  /> },
+  // { title: "Philosophies", content: "life", icon: <EmojiObjectsOutlined className={classes.icon} /> },,
+  // { title: "Leisure Reading", content: "books", icon: <LibraryBooks className={classes.icon} /> },,
+  // { title: "Songs", content: "songs", icon: <MusicNote className={classes.icon} /> },,
 ];
 
 const ThemeContext = React.createContext();
@@ -127,7 +155,6 @@ const ThemeProvider = ThemeContext.Provider;
 function Sidebar({ setCurrentPage }) {
   const classes = useStyles();
   const theme = useTheme();
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
   const [selectedSection, setSelectedSection] = useState(sections[0]);
 
   const handleSectionClick = (section) => {
@@ -143,63 +170,6 @@ function Sidebar({ setCurrentPage }) {
   // const lastName2 = "చుండూరి";
   const firstName2 = "Srikar";
   const lastName2 = "Chundury";
-  const showLastName = !isSmallScreen;
-
-  function Section({ section }) {
-    const theme = useTheme();
-    const classes = useStyles();
-    const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
-
-    return (
-      <ListItem
-        button
-        onClick={() => handleSectionClick(section)}
-        className={`${classes.listItem} ${
-          section === selectedSection ? classes.selected : ""
-        }`}
-      >
-        {isSmallScreen ? (
-          <>
-            {React.cloneElement(section.icon, {
-              className: classes.icon,
-              style: {
-                fontSize: "1.7rem",
-                color:
-                  section === selectedSection
-                    ? theme.palette.primary.contrastText
-                    : theme.palette.text.secondary,
-              },
-            })}
-          </>
-        ) : (
-          <>
-            {React.cloneElement(section.icon, {
-              className: classes.icon,
-              style: {
-                fontSize: "1.7rem",
-                color:
-                  section === selectedSection
-                    ? theme.palette.primary.contrastText
-                    : theme.palette.text.secondary,
-              },
-            })}
-            <ListItemText
-              className={classes.listItemText}
-              variant="subtitle1"
-              style={{
-                color:
-                  section === selectedSection
-                    ? theme.palette.primary.contrastText
-                    : theme.palette.text.primary,
-              }}
-            >
-              {section.title}
-            </ListItemText>
-          </>
-        )}
-      </ListItem>
-    );
-  }
 
   return (
     <ThemeProvider value={theme}>
@@ -217,19 +187,10 @@ function Sidebar({ setCurrentPage }) {
               src={process.env.PUBLIC_URL + "/selfie.jpeg"}
               className={classes.avatar}
             />
-            {isSmallScreen ? (
-              <Typography variant="subtitle1" className={classes.description}>
-                {firstName2}
-                {showLastName && " " + lastName2}
-              </Typography>
-            ) : (
-              <Typography variant="subtitle2" className={classes.description}>
-                {firstName2}
-                {showLastName && " " + lastName2}
-              </Typography>
-            )}
-
-            <Typography variant="subtitle3">
+            <Typography className={classes.heading}>
+              {firstName2} {lastName2}
+            </Typography>
+            <Typography className={classes.subheading}>
               Hardware-aware Software Engineer and Researcher
             </Typography>
 
@@ -258,7 +219,7 @@ function Sidebar({ setCurrentPage }) {
               >
                 <GitHubIcon className={classes.icon} />
               </a>
-              <a
+              {/* <a
                 href="https://www.instagram.com/chundurysrikar"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -271,26 +232,58 @@ function Sidebar({ setCurrentPage }) {
                 rel="noopener noreferrer"
               >
                 <FacebookIcon className={classes.icon} />
-              </a>
-              <a
+              </a> */}
+              {/* <a
                 href="https://twitter.com/chundurysrikar"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 <TwitterIcon className={classes.icon} />
-              </a>
+              </a> */}
             </div>
           </div>
 
           <Divider className={classes.divider} />
 
-          <List>
+          <List className={classes.listOfContent}>
             {sections.map((section, index) => (
-              <Section section={section} key={index} />
+              <ListItem
+                button
+                onClick={() => handleSectionClick(section)}
+                className={`${classes.listItem} ${
+                  section === selectedSection ? classes.selected : ""
+                }`}
+                key={index}
+              >
+                <section.icon.type
+                  className={classes.listIcon}
+                  style={{
+                    color:
+                      section === selectedSection
+                        ? theme.palette.primary.contrastText
+                        : theme.palette.text.secondary,
+                    // fontSize: "1.5vw",
+                  }}
+                />
+                <Typography
+                  style={{
+                    marginLeft: theme.spacing(2), // Add space between icon and text
+                    color:
+                      section === selectedSection
+                        ? theme.palette.primary.contrastText
+                        : theme.palette.text.primary,
+                    fontSize: "1vw",
+                  }}
+                >
+                  {section.title} {/* The text you want to display next to the icon */}
+                </Typography>
+              </ListItem>
             ))}
           </List>
 
+
           <Divider className={classes.divider} />
+
         </Drawer>
       </div>
     </ThemeProvider>
