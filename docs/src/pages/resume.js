@@ -32,27 +32,45 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: "bold",
     color: theme.palette.text.primary,
     fontSize: '1.5vw',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '4vw',
+    },
   },
   icon: {
     fontSize: '1.5vw',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '4vw',
+    },
     marginRight: '1vw',
     color: theme.palette.primary.main,
   },
   subtitle: {
     fontSize: '1vw',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '3vw',
+    },
     color: theme.palette.text.primary,
   },
   name: {
     fontSize: '2vw',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '3vw',
+    },
     color: theme.palette.text.primary,
   },
   company: {
     fontSize: '0.8vw',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '2vw',
+    },
     fontWeight: "bold",
     color: theme.palette.text.primary,
   },
   date: {
     fontSize: '0.8vw',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '2vw',
+    },
     color: theme.palette.text.primary,
   },
   subtitle1: {
@@ -61,11 +79,17 @@ const useStyles = makeStyles((theme) => ({
   description: {
     marginTop: '0.7vw',
     fontSize: '0.7vw',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '2vw',
+    },
     color: theme.palette.text.primary,
   },
   skills: {
     // marginTop: '1vw',
     fontSize: '0.8vw',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '2vw',
+    },
     color: theme.palette.text.primary,
   },
   link: {

@@ -30,22 +30,41 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     alignItems: "center",
     fontSize: "1.5vw",
+    [theme.breakpoints.down("sm")]: {
+      display: "flex-start",
+      justifyContent: "flex-start",
+      alignItems: "flex-start",
+      fontSize: "4vw",
+    },
   },
   listOfContent: {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
     padding: 0,
+    [theme.breakpoints.down("sm")]: {
+      display: "flex-start",
+      justifyContent: "flex-start",
+      alignItems: "flex-start",
+    },
   },
   heading: {
     fontSize: "1.5vw",
     color: theme.palette.text.primary, // Set text color
     textAlign: "center",
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "4vw",
+      textAlign: "left",
+    },
   },
   subheading: {
     fontSize: "0.8vw",
     color: theme.palette.text.secondary, // Set text color
     textAlign: "center",
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "2vw",
+      textAlign: "left",
+    },
   },
   sidebarContainer: {
     padding: "2.5vw",
@@ -53,6 +72,12 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+    [theme.breakpoints.down("sm")]: {
+      padding: "1vw",
+      display: "flex-start",
+      justifyContent: "flex-start",
+      alignItems: "flex-start",
+    },
   },
   drawer: {
     width: "15vw",
@@ -63,6 +88,11 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+    [theme.breakpoints.down("sm")]: {
+      display: "flex-start",
+      justifyContent: "flex-start",
+      alignItems: "flex-start",
+    },
   },
   listItem: {
     "&:hover": {
@@ -71,11 +101,19 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "left",
     alignItems: "center",
+    [theme.breakpoints.down("sm")]: {
+      display: "flex-start",
+      justifyContent: "flex-start",
+      alignItems: "flex-start",
+    },
   },
   listItemText: {
     fontSize: "1.5vw",
     marginLeft: "0.5vw",
     color: theme.palette.text.primary, // Set text color
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "4vw",
+    },
   },
   selected: {
     backgroundColor: theme.palette.primary.main,
@@ -97,6 +135,10 @@ const useStyles = makeStyles((theme) => ({
     width: "6vw",
     height: "10vw",
     marginBottom: "1.5vw",
+    [theme.breakpoints.down("sm")]: {
+      width: "12vw",
+      height: "15vw",
+    },
   },
   divider: {
     margin: "2vw 0",
@@ -105,6 +147,9 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.divider, // Set divider color
     width: "15vw",
     // fontWeight: "bold",
+    [theme.breakpoints.down("sm")]: {
+      width: "100%",
+    },
   },
   icon: {
     fontSize: "2vw",
@@ -114,10 +159,17 @@ const useStyles = makeStyles((theme) => ({
     "&:hover": {
       color: theme.palette.primary.main,
     },
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "4vw",
+      padding: "1vw",
+    },
   },
   listIcon : {
     fontSize: "1.5vw",
-    color: theme.palette.text.secondary
+    color: theme.palette.text.secondary,
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "4vw",
+    },
   },
   button: {
     fontSize: "0.8vw",
@@ -130,12 +182,25 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     alignItems: "center",
     width: "4vw",
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "2vw",
+      display: "flex-start",
+      // justifyContent: "flex-start",
+      justifyContent: "center",
+      alignItems: "flex-start",
+      padding: "1vw",
+    },
   },
   socialIcons: {
     display: "justify",
     justifyContent: "center",
     alignItems: "center",
     marginTop: "1vw",
+    [theme.breakpoints.down("sm")]: {
+      display: "flex-start",
+      justifyContent: "flex-start",
+      alignItems: "flex-start",
+    },
   },
 }));
 
@@ -156,6 +221,8 @@ function Sidebar({ setCurrentPage }) {
   const classes = useStyles();
   const theme = useTheme();
   const [selectedSection, setSelectedSection] = useState(sections[0]);
+
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
   const handleSectionClick = (section) => {
     setSelectedSection(section);
@@ -187,12 +254,25 @@ function Sidebar({ setCurrentPage }) {
               src={process.env.PUBLIC_URL + "/selfie.jpeg"}
               className={classes.avatar}
             />
-            <Typography className={classes.heading}>
-              {firstName2} {lastName2}
-            </Typography>
-            <Typography className={classes.subheading}>
-              Hardware-aware Software Engineer and Researcher
-            </Typography>
+            {isSmallScreen ? (
+                <>
+                  <Typography className={classes.heading}>
+                    {firstName2}
+                  </Typography>
+                  <Typography className={classes.subheading}>
+                    Hardware-aware Researcher
+                  </Typography>
+                </>
+              ) : (
+                <>
+                  <Typography className={classes.heading}>
+                    {firstName2} {lastName2}
+                  </Typography>
+                  <Typography className={classes.subheading}>
+                    Hardware-aware Software Engineer and Researcher
+                  </Typography>
+                </>
+              )}
 
             <Divider className={classes.divider} />
 
@@ -265,18 +345,20 @@ function Sidebar({ setCurrentPage }) {
                     // fontSize: "1.5vw",
                   }}
                 />
-                <Typography
-                  style={{
-                    marginLeft: theme.spacing(2), // Add space between icon and text
-                    color:
-                      section === selectedSection
-                        ? theme.palette.primary.contrastText
-                        : theme.palette.text.primary,
-                    fontSize: "1vw",
-                  }}
-                >
-                  {section.title} {/* The text you want to display next to the icon */}
-                </Typography>
+                {!isSmallScreen && (
+                  <Typography
+                    style={{
+                      marginLeft: theme.spacing(2), // Add space between icon and text
+                      color:
+                        section === selectedSection
+                          ? theme.palette.primary.contrastText
+                          : theme.palette.text.primary,
+                      fontSize: "1vw",
+                    }}
+                  >
+                    {section.title} {/* The text you want to display next to the icon */}
+                  </Typography>
+                )}
               </ListItem>
             ))}
           </List>

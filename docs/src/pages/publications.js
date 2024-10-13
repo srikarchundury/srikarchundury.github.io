@@ -9,6 +9,11 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: '3vw',
     paddingBottom: '3vw',
     paddingLeft: '1vw',
+    [theme.breakpoints.down('sm')]: {
+      paddingTop: '1vw',
+      paddingBottom: '1vw',
+      paddingLeft: '5vw',
+    },
     backgroundColor: theme.palette.background.default,
     width: '100%',
     height: '100%',
@@ -18,10 +23,17 @@ const useStyles = makeStyles((theme) => ({
     // justifyContent: 'space-evenly',
     // alignContent: 'space-evenly',
     alignItems: 'center',
+    [theme.breakpoints.down('sm')]: {
+      justifyContent: 'space-evenly',
+    },
   },
   tile: {
     height: '15vw',
     width: '15vw',
+    [theme.breakpoints.down('sm')]: {
+      height: '40vw',
+      width: '50vw',
+    },
     border: `0.1vw solid ${theme.palette.grey[300]}`,
     boxShadow: `0px 0.3vw 0.8vw rgba(0, 0, 0, 0.2)`,
     position: 'relative',
@@ -41,6 +53,9 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     fontSize: '1.2vw',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '4vw',
+    },
     fontWeight: 'bold',
     marginBottom: '1vw',
     color: theme.palette.text.primary,
@@ -48,6 +63,9 @@ const useStyles = makeStyles((theme) => ({
   },
   content: {
     fontSize: '0.9vw',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '3vw',
+    },
     marginBottom: '2vw',
     color: theme.palette.text.secondary,
     transition: 'color 0.3s',
@@ -65,6 +83,9 @@ const useStyles = makeStyles((theme) => ({
     '& svg': {
       color: theme.palette.primary.contrastText,
       fontSize: '2vw',
+      [theme.breakpoints.down('sm')]: {
+        fontSize: '5vw',
+      },
     },
   },
 }));

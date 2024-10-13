@@ -27,10 +27,10 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     position: 'fixed',
     overflowY: 'auto',
-    padding: '3%',
+    // padding: '3%',
     zIndex: theme.zIndex.drawer,
     boxSizing: 'border-box',
-    width: '15vw'
+    width: '16vw'
   },
   pageContent: {
     marginLeft: '15vw',
