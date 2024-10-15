@@ -18,6 +18,9 @@ import { dark } from '@material-ui/core/styles/createPalette';
 const useStyles = makeStyles((theme) => ({
   copyright: {
     fontSize: '0.8vw',
+    [theme.breakpoints.down("sm")]: {
+      fontSize: '2vw',
+    },
   },
   title: {
     flexGrow: 1,
@@ -30,10 +33,10 @@ const useStyles = makeStyles((theme) => ({
     // padding: '3%',
     zIndex: theme.zIndex.drawer,
     boxSizing: 'border-box',
-    width: '15vw',
+    width: '18vw',
   },
   pageContent: {
-    marginLeft: '15vw',
+    marginLeft: '18vw',
     position: 'fixed',
     overflowY: 'auto',
     padding: 0,
@@ -54,11 +57,17 @@ const useStyles = makeStyles((theme) => ({
     bottom: 0,
     width: '100%',
     height: '2vw',
+    [theme.breakpoints.down("sm")]: {
+      height: '3.5vw',
+    },
     zIndex: theme.zIndex.drawer + 1,
     paddingBottom: '0%', // Adjust the value as needed
   },
   toggleIcon: {
     fontSize: '2vw',
+    [theme.breakpoints.down("sm")]: {
+      fontSize: '3vw',
+    },
     transition: 'color 0.3s ease',
     color: theme.palette.type === 'dark' ? theme.palette.primary.light : theme.palette.primary.dark,
     '&:hover': {
@@ -70,6 +79,9 @@ const useStyles = makeStyles((theme) => ({
   },
   tooltip: {
     fontSize: '1.4vh',
+    [theme.breakpoints.down("sm")]: {
+      fontSize: '2.5vw',
+    },
   },
 }));
 

@@ -80,10 +80,10 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   drawer: {
-    width: "15vw",
+    width: "18vw",
   },
   drawerPaper: {
-    width: "15vw",
+    width: "18vw",
     backgroundColor: theme.palette.background.default, // Set background color
     display: "flex",
     justifyContent: "center",
