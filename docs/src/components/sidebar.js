@@ -220,7 +220,7 @@ const ThemeProvider = ThemeContext.Provider;
 function Sidebar({ setCurrentPage }) {
   const classes = useStyles();
   const theme = useTheme();
-  const [selectedSection, setSelectedSection] = useState(sections[0]);
+  const [selectedSection, setSelectedSection] = useState(sections[1]);
 
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
@@ -260,7 +260,8 @@ function Sidebar({ setCurrentPage }) {
                     {firstName2}
                   </Typography>
                   <Typography className={classes.subheading}>
-                    Hardware-aware Researcher
+                    {/* Hardware-aware Researcher */}
+                    PhD Student
                   </Typography>
                 </>
               ) : (
@@ -269,7 +270,8 @@ function Sidebar({ setCurrentPage }) {
                     {firstName2} {lastName2}
                   </Typography>
                   <Typography className={classes.subheading}>
-                    Hardware-aware Software Engineer and Researcher
+                    {/* Hardware-aware Software Engineer and Researcher */}
+                    Computer Science PhD Student
                   </Typography>
                 </>
               )}

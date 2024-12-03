@@ -88,12 +88,12 @@ const useStyles = makeStyles((theme) => ({
 function App() {
   const classes = useStyles();
   const theme = useTheme();
-  const [currentPage, setCurrentPage] = useState('milestones');
+  const [currentPage, setCurrentPage] = useState('work');
 
   // Function to get a random theme
   function getRandomTheme() {
-    // return Math.random() < 0.5 ? lightTheme : darkTheme; // 50% chance of lightTheme, 50% chance of darkTheme
-    return darkTheme; // Always return darkTheme
+    return Math.random() < 0.5 ? lightTheme : darkTheme; // 50% chance of lightTheme, 50% chance of darkTheme
+    // return darkTheme; // Always return darkTheme
   }
   const [currentTheme, setCurrentTheme] = useState(getRandomTheme()); // Initial theme selection
 
