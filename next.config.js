@@ -7,8 +7,8 @@ module.exports = {
     domains: ['raw.githubusercontent.com'],
   },
   // For static export to subfolder
-  basePath: isProd ? '/deploy-gh-pages' : '',
-  assetPrefix: isProd ? '/deploy-gh-pages/' : '',
+  basePath: '',
+  assetPrefix: '',
   trailingSlash: true,
   // For static export only
   output: 'export',
