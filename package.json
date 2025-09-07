@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-  "deploy": "npm run build && rm -rf deploy-gh-pages && mv out deploy-gh-pages && npx gh-pages -d deploy-gh-pages"
+  "deploy": "npm run build && rm -rf deploy-gh-pages && mv out deploy-gh-pages && touch deploy-gh-pages/.nojekyll && npx gh-pages -d deploy-gh-pages"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
