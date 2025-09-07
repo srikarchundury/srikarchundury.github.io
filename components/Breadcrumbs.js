@@ -31,7 +31,7 @@ function getBreadcrumbs(pathname) {
   });
   // Always start with Home
   return [
-    { href: '/', label: <HomeIcon sx={{ fontSize: 18, mb: '-2px' }} /> },
+    { href: '/', label: 'Home' },
     ...crumbs,
   ];
 }

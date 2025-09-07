@@ -44,7 +44,7 @@ export default function Header({ onMenuClick, sidebarOpen }) {
 			minHeight: 64,
 			padding: '0 16px',
 		}}>
-			{/* Sidebar toggle always at left, functional */}
+			{/* Sidebar toggle next to Home */}
 			<IconButton
 				onClick={onMenuClick}
 				sx={{
