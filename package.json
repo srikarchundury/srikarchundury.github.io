@@ -7,8 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-  "export": "next build",
-  "deploy": "npm run export && rm -rf deploy-gh-pages && mv out deploy-gh-pages && npx gh-pages -d deploy-gh-pages"
+  "deploy": "npm run build && rm -rf deploy-gh-pages && mv out deploy-gh-pages && npx gh-pages -d deploy-gh-pages"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
