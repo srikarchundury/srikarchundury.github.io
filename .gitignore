@@ -5,6 +5,7 @@ node_modules/
 .next/
 out/
 deploy-tmp/
+deploy-gh-pages/
 
 # system files
 .DS_Store

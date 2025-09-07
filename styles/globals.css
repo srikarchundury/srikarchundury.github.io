@@ -1,0 +1,50 @@
+/* Global styles for Srikar Chundury's site - IEEE/ACM LaTeX inspired */
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Computer Modern', 'Latin Modern Roman', 'Times New Roman', Times, serif;
+  background: #f9f9f9;
+  color: #222;
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Computer Modern', 'Latin Modern Roman', 'Times New Roman', Times, serif;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: #1a237e;
+  margin-top: 1.2em;
+  margin-bottom: 0.5em;
+}
+
+p, li, span, div, a, label, input, textarea {
+  font-family: 'Computer Modern', 'Latin Modern Roman', 'Times New Roman', Times, serif;
+}
+
+a {
+  color: #1976d2;
+  text-decoration: underline;
+}
+
+a:hover {
+  color: #0d47a1;
+  text-decoration: none;
+}
+
+ol, ul {
+  padding-left: 1.2em;
+}
+
+code, pre {
+  font-family: 'Fira Mono', 'Consolas', 'Monaco', monospace;
+  background: #f5f5f5;
+  padding: 2px 4px;
+  border-radius: 3px;
+}
+
+/* MUI overrides for LaTeX look */
+.MuiTypography-root {
+  font-family: 'Computer Modern', 'Latin Modern Roman', 'Times New Roman', Times, serif;
+}
