@@ -42,6 +42,15 @@ export const siteConfig = {
   remoteImages: {
     meImg: 'https://raw.githubusercontent.com/srikarchundury/srikarchundury-site-data/main/image_data/profile_pic.jpeg.bin',
   },
+  // Additional files and people
+  advisor: {
+    name: 'Dr. Frank Mueller',
+    url: 'https://arcb.csc.ncsu.edu/~mueller/'
+  },
+  // Add resume link (binary) hosted in companion data repo
+  files: {
+    resume: 'https://raw.githubusercontent.com/srikarchundury/srikarchundury-site-data/main/pdf_data/resume.pdf.bin'
+  },
   navSections: [
   { title: 'Home', href: '/home', icon: 'Home' },
     { title: 'Bio', href: '/bio', icon: 'Info' },

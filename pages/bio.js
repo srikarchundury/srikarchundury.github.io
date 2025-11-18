@@ -4,6 +4,9 @@ import { useEffect, useState } from 'react';
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import Chip from '@mui/material/Chip';
+import DownloadIcon from '@mui/icons-material/Download';
 	
 import Tooltip from '@mui/material/Tooltip';
 import IconButton from '@mui/material/IconButton';
@@ -12,13 +15,14 @@ import { colors } from '../utils/colors';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import EmailIcon from '@mui/icons-material/Email';
 import SchoolIcon from '@mui/icons-material/School';
-import { readJSON, readImage } from '../utils/readRaw';
+import { readJSON, readImage, readRaw } from '../utils/readRaw';
 import { siteConfig } from '../utils/siteConfig';
 
 export default function BioPage() {
 		const [bio, setBio] = useState(null);
 		const [avatarSrc, setAvatarSrc] = useState(null);
 		const [avatarLoading, setAvatarLoading] = useState(true);
+		const [resumeLoading, setResumeLoading] = useState(false);
 
 		useEffect(() => {
 			readJSON(siteConfig.data.bio)
@@ -43,6 +47,32 @@ export default function BioPage() {
 				});
 		}, []);
 
+		async function handleDownloadResume() {
+			if (resumeLoading) return;
+			setResumeLoading(true);
+			try {
+				// readRaw returns a Uint8Array of decoded bytes
+				const bytes = await readRaw(siteConfig.files.resume);
+				const blob = new Blob([bytes], { type: 'application/pdf' });
+				const url = URL.createObjectURL(blob);
+				// create a temporary anchor to trigger download
+				const a = document.createElement('a');
+				a.href = url;
+				a.download = 'resume.pdf';
+				document.body.appendChild(a);
+				a.click();
+				a.remove();
+				// release object URL after a short delay
+				setTimeout(() => URL.revokeObjectURL(url), 15000);
+			} catch (err) {
+				console.error('Failed to download resume:', err);
+				// fallback: open raw link in new tab
+				window.open(siteConfig.files.resume, '_blank', 'noopener');
+			} finally {
+				setResumeLoading(false);
+			}
+		}
+
 		if (!bio) {
 			return (
 				<div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '60vh', width: '100%' }}>
@@ -57,48 +87,38 @@ export default function BioPage() {
 							<title>Bio | Srikar Chundury</title>
 						</Head>
 						<div style={{ marginBottom: 24 }}>
-							<h1 style={{ fontSize: '2rem', fontWeight: 700, letterSpacing: 0.5, color: colors.primary, fontFamily: 'serif', margin: 0 }}>Bio</h1>
-							<div style={{ width: 60, height: 4, background: colors.shadowBlue, borderRadius: 2, marginTop: 8, marginBottom: 4 }} />
-							<span style={{ color: colors.mutedText, fontSize: '1rem', fontStyle: 'italic' }}>
-								
-							</span>
-							<div style={{ display: 'flex', alignItems: 'flex-start', gap: 32, marginBottom: 18, justifyContent: 'flex-start' }}>
-								{/* Avatar column commented out so Bio content lines up with other pages
-								<div style={{ position: 'relative', width: 120, height: 160, display: 'flex', alignItems: 'flex-start', justifyContent: 'flex-start' }}>
-									{avatarLoading ? (
-										<Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 120, height: 160 }}>
-											<CircularProgress size={48} thickness={4} />
-										</Box>
-									) : (
-										null
-									)}
+							<div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16 }}>
+								<div>
+									<h1 style={{ fontSize: '2rem', fontWeight: 700, letterSpacing: 0.5, color: colors.primary, fontFamily: 'serif', margin: 0 }}>{bio.name}</h1>
+									<div style={{ width: 60, height: 4, background: colors.shadowBlue, borderRadius: 2, marginTop: 8, marginBottom: 4 }} />
+									<span style={{ color: colors.mutedText, fontSize: '1rem', fontStyle: 'italic' }}></span>
 								</div>
-								*/}
+								<div>
+									<Button variant="contained" color="primary" startIcon={<DownloadIcon />} onClick={handleDownloadResume} disabled={resumeLoading}>
+										{resumeLoading ? 'Downloading...' : 'RESUME'}
+									</Button>
+								</div>
+							</div>
+
+							<div style={{ display: 'flex', alignItems: 'flex-start', gap: 32, marginTop: 12, marginBottom: 18, justifyContent: 'flex-start' }}>
+								{/* Avatar column commented out so Bio content lines up with other pages */}
 								<div style={{ flex: 1 }}>
-									{/* Name display commented out per request
-									<h1 style={{ fontSize: '2.1rem', fontWeight: 700, margin: 0, color: colors.primary, fontFamily: 'serif' }}>{bio.name}</h1>
-									*/}
-									<div style={{ fontSize: '1.15rem', color: colors.highlight, fontWeight: 600, marginBottom: 4 }}>{bio.title}</div>
-									{/* Location display commented out per request */}
-									{/* <div style={{ color: colors.text, fontSize: '1.05rem', marginBottom: 8 }}>{bio.location}</div> */}
-									<div style={{ display: 'flex', gap: 8, marginTop: 4 }}>
-										{/* Contact links commented out per request
-										{bio.contact?.email && (
-											<Tooltip title={bio.contact.email}>
-												<IconButton href={`mailto:${bio.contact.email}`} size="small" color="primary"><EmailIcon /></IconButton>
-											</Tooltip>
-										)}
-										{bio.contact?.linkedin && (
-											<Tooltip title="LinkedIn">
-												<IconButton href={bio.contact.linkedin} target="_blank" rel="noopener noreferrer" size="small" color="primary"><LinkedInIcon /></IconButton>
-											</Tooltip>
-										)}
-										{bio.contact?.github && (
-											<Tooltip title="GitHub">
-												<IconButton href={bio.contact.github} target="_blank" rel="noopener noreferrer" size="small" color="primary"><GitHubIcon /></IconButton>
-											</Tooltip>
-										)}
-										*/}
+									<div style={{ fontSize: '1.15rem', color: colors.highlight, fontWeight: 600, marginBottom: 6 }}>{bio.title}</div>
+									<div style={{ color: colors.text, fontSize: '1.05rem', marginBottom: 8 }}>{bio.location}</div>
+									{/* Top skills */}
+									<div style={{ marginTop: 8, display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+										{bio.top_skills && bio.top_skills.map((s, i) => (
+											<Chip key={i} label={s} size="small" />
+										))}
+									</div>
+									{/* Advisor */}
+									{siteConfig.advisor && (
+										<div style={{ marginTop: 10, fontSize: '0.95rem' }}>
+											<strong>Advisor:</strong> <a href={siteConfig.advisor.url} target="_blank" rel="noopener noreferrer">{siteConfig.advisor.name}</a>
+										</div>
+									)}
+									<div style={{ display: 'flex', gap: 8, marginTop: 8 }}>
+										{/* Contact icon buttons are intentionally hidden for now */}
 									</div>
 								</div>
 							</div>
