@@ -4,13 +4,14 @@ import Head from 'next/head';
 import { useEffect, useState } from 'react';
 import CircularProgress from '@mui/material/CircularProgress';
 import { readJSON } from '../utils/readRaw';
+import { siteConfig } from '../utils/siteConfig';
 import { colors } from '../utils/colors';
 
 export default function EducationPage() {
 	const [education, setEducation] = useState(null);
 
 	useEffect(() => {
-		readJSON('https://raw.githubusercontent.com/srikarchundury/srikarchundury-site-data/main/json_data/education.json.bin')
+		readJSON(siteConfig.data.education)
 			.then(setEducation)
 			.catch(console.error);
 	}, []);
@@ -33,7 +34,7 @@ export default function EducationPage() {
 			</Head>
 			<div>
 				<div style={{ marginBottom: 24 }}>
-					<h1 style={{ fontSize: '2rem', fontWeight: 700, letterSpacing: 0.5, color: colors.primary, fontFamily: 'serif', margin: 0 }}>Academic Background</h1>
+					<h1 style={{ fontSize: '2rem', fontWeight: 700, letterSpacing: 0.5, color: colors.primary, fontFamily: 'serif', margin: 0 }}>Education</h1>
 					<div style={{ width: 60, height: 4, background: colors.shadowBlue, borderRadius: 2, marginTop: 8, marginBottom: 4 }} />
 					   <span style={{ color: colors.mutedText, fontSize: '1rem', fontStyle: 'italic' }}>
 						Formal education, degrees, and institutions attended

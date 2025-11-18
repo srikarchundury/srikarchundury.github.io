@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import CircularProgress from '@mui/material/CircularProgress';
 // import MainContainer from '../components/MainContainer';
 import { readJSON } from '../utils/readRaw';
+import { siteConfig } from '../utils/siteConfig';
 import { colors } from '../utils/colors';
 import { Box } from '@mui/material';
 
@@ -15,7 +16,7 @@ export default function ProjectsPage() {
 	const [projects, setProjects] = useState(null);
 
 	useEffect(() => {
-		readJSON('https://raw.githubusercontent.com/srikarchundury/srikarchundury-site-data/main/json_data/projects.json.bin')
+		readJSON(siteConfig.data.projects)
 			.then(setProjects)
 			.catch(console.error);
 	}, []);

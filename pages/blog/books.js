@@ -3,11 +3,12 @@ import Head from 'next/head';
 import CircularProgress from '@mui/material/CircularProgress';
 import { readJSON } from '../../utils/readRaw';
 import { colors } from '../../utils/colors';
+import { siteConfig } from '../../utils/siteConfig';
 
 export default function BooksBlogPage() {
   const [books, setBooks] = useState(null);
   useEffect(() => {
-    readJSON('https://raw.githubusercontent.com/srikarchundury/srikarchundury-site-data/main/json_data/books.json.bin')
+    readJSON(siteConfig.data.books)
       .then(setBooks)
       .catch(() => setBooks([]));
   }, []);

@@ -13,6 +13,7 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import EmailIcon from '@mui/icons-material/Email';
 import SchoolIcon from '@mui/icons-material/School';
 import { readJSON, readImage } from '../utils/readRaw';
+import { siteConfig } from '../utils/siteConfig';
 
 export default function BioPage() {
 		const [bio, setBio] = useState(null);
@@ -20,7 +21,7 @@ export default function BioPage() {
 		const [avatarLoading, setAvatarLoading] = useState(true);
 
 		useEffect(() => {
-			readJSON('https://raw.githubusercontent.com/srikarchundury/srikarchundury-site-data/main/json_data/bio.json.bin')
+			readJSON(siteConfig.data.bio)
 				.then(setBio)
 				.catch(err => {
 					console.error('Failed to load bio:', err);
@@ -28,8 +29,8 @@ export default function BioPage() {
 		}, []);
 
 		useEffect(() => {
-			// Use me.img.bin for avatar
-			const meImg = 'https://raw.githubusercontent.com/srikarchundury/srikarchundury-site-data/main/image_data/me.img.bin';
+		// Use me.img.bin for avatar (centralized in siteConfig)
+		const meImg = siteConfig.remoteImages.meImg;
 			setAvatarLoading(true);
 			readImage(meImg)
 				.then(src => {
@@ -55,28 +56,33 @@ export default function BioPage() {
 						<Head>
 							<title>Bio | Srikar Chundury</title>
 						</Head>
-						<div>
+						<div style={{ marginBottom: 24 }}>
+							<h1 style={{ fontSize: '2rem', fontWeight: 700, letterSpacing: 0.5, color: colors.primary, fontFamily: 'serif', margin: 0 }}>Bio</h1>
+							<div style={{ width: 60, height: 4, background: colors.shadowBlue, borderRadius: 2, marginTop: 8, marginBottom: 4 }} />
+							<span style={{ color: colors.mutedText, fontSize: '1rem', fontStyle: 'italic' }}>
+								
+							</span>
 							<div style={{ display: 'flex', alignItems: 'flex-start', gap: 32, marginBottom: 18, justifyContent: 'flex-start' }}>
+								{/* Avatar column commented out so Bio content lines up with other pages
 								<div style={{ position: 'relative', width: 120, height: 160, display: 'flex', alignItems: 'flex-start', justifyContent: 'flex-start' }}>
 									{avatarLoading ? (
 										<Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 120, height: 160 }}>
 											<CircularProgress size={48} thickness={4} />
 										</Box>
 									) : (
-										<Avatar
-											src={avatarSrc}
-											alt={bio.name}
-											sx={{ width: 120, height: 160, boxShadow: 1, border: `2px solid ${colors.blogBg}`, bgcolor: colors.blogBg, fontSize: 48 }}
-										>
-											{!avatarSrc && <SchoolIcon fontSize="large" />}
-										</Avatar>
+										null
 									)}
 								</div>
+								*/}
 								<div style={{ flex: 1 }}>
+									{/* Name display commented out per request
 									<h1 style={{ fontSize: '2.1rem', fontWeight: 700, margin: 0, color: colors.primary, fontFamily: 'serif' }}>{bio.name}</h1>
+									*/}
 									<div style={{ fontSize: '1.15rem', color: colors.highlight, fontWeight: 600, marginBottom: 4 }}>{bio.title}</div>
-									<div style={{ color: colors.text, fontSize: '1.05rem', marginBottom: 8 }}>{bio.location}</div>
+									{/* Location display commented out per request */}
+									{/* <div style={{ color: colors.text, fontSize: '1.05rem', marginBottom: 8 }}>{bio.location}</div> */}
 									<div style={{ display: 'flex', gap: 8, marginTop: 4 }}>
+										{/* Contact links commented out per request
 										{bio.contact?.email && (
 											<Tooltip title={bio.contact.email}>
 												<IconButton href={`mailto:${bio.contact.email}`} size="small" color="primary"><EmailIcon /></IconButton>
@@ -92,10 +98,11 @@ export default function BioPage() {
 												<IconButton href={bio.contact.github} target="_blank" rel="noopener noreferrer" size="small" color="primary"><GitHubIcon /></IconButton>
 											</Tooltip>
 										)}
+										*/}
 									</div>
 								</div>
 							</div>
-							<div style={{ width: 60, height: 4, background: colors.highlight, borderRadius: 2, marginTop: 8, marginBottom: 8 }} />
+                            
 							{bio.summary && (
 								<div style={{ fontSize: '1.08rem', color: colors.bodyText, marginBottom: 18, fontStyle: 'italic', lineHeight: 1.6 }}>{bio.summary}</div>
 							)}

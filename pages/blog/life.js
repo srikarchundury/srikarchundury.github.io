@@ -3,11 +3,12 @@ import Head from 'next/head';
 import CircularProgress from '@mui/material/CircularProgress';
 import { readJSON } from '../../utils/readRaw';
 import { colors } from '../../utils/colors';
+import { siteConfig } from '../../utils/siteConfig';
 
 export default function LifeBlogPage() {
   const [life, setLife] = useState(null);
   useEffect(() => {
-    readJSON('https://raw.githubusercontent.com/srikarchundury/srikarchundury-site-data/main/json_data/life.json.bin')
+    readJSON(siteConfig.data.life)
       .then(setLife)
       .catch(() => setLife([]));
   }, []);

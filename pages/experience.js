@@ -2,13 +2,14 @@ import Head from 'next/head';
 import { useEffect, useState } from 'react';
 import CircularProgress from '@mui/material/CircularProgress';
 import { readJSON } from '../utils/readRaw';
+import { siteConfig } from '../utils/siteConfig';
 import { colors } from '../utils/colors';
 
 export default function ExperiencePage() {
 	const [experience, setExperience] = useState(null);
 
 	useEffect(() => {
-		readJSON('https://raw.githubusercontent.com/srikarchundury/srikarchundury-site-data/main/json_data/experience.json.bin')
+		readJSON(siteConfig.data.experience)
 			.then(setExperience)
 			.catch(console.error);
 	}, []);

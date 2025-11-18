@@ -13,11 +13,37 @@ export const siteConfig = {
     orcid: 'https://orcid.org/0000-0002-1234-5678', // update as needed
   },
   profileImages: {
-    selfie: 'https://raw.githubusercontent.com/srikarchundury/srikarchundury-site-data/main/image_data/selfie_final.img.bin',
-    me: 'https://raw.githubusercontent.com/srikarchundury/srikarchundury-site-data/main/image_data/me.img.bin',
+    selfie: 'https://raw.githubusercontent.com/srikarchundury/srikarchundury-site-data/main/image_data/me.jpeg.bin',
+    me: 'https://raw.githubusercontent.com/srikarchundury/srikarchundury-site-data/main/image_data/profile_pic.jpeg.bin',
+  },
+  images: [
+    {
+      url: 'https://raw.githubusercontent.com/srikarchundury/srikarchundury-site-data/main/image_data/blue_lake_telluride.jpeg.bin',
+      label: 'Blue Lake, Telluride, CO'
+    },
+    {
+      url: 'https://raw.githubusercontent.com/srikarchundury/srikarchundury-site-data/main/image_data/lake_raleigh.jpeg.bin',
+      label: 'Lake Raleigh, Raleigh, NC'
+    }
+  ],
+  // Remote data URLs hosted in the companion repo
+  data: {
+    bio: 'https://raw.githubusercontent.com/srikarchundury/srikarchundury-site-data/main/json_data/bio.json.bin',
+    experience: 'https://raw.githubusercontent.com/srikarchundury/srikarchundury-site-data/main/json_data/experience.json.bin',
+    projects: 'https://raw.githubusercontent.com/srikarchundury/srikarchundury-site-data/main/json_data/projects.json.bin',
+    publications: 'https://raw.githubusercontent.com/srikarchundury/srikarchundury-site-data/main/json_data/publications.json.bin',
+    honors: 'https://raw.githubusercontent.com/srikarchundury/srikarchundury-site-data/main/json_data/honors.json.bin',
+    education: 'https://raw.githubusercontent.com/srikarchundury/srikarchundury-site-data/main/json_data/education.json.bin',
+    books: 'https://raw.githubusercontent.com/srikarchundury/srikarchundury-site-data/main/json_data/books.json.bin',
+    life: 'https://raw.githubusercontent.com/srikarchundury/srikarchundury-site-data/main/json_data/life.json.bin',
+    songs: 'https://raw.githubusercontent.com/srikarchundury/srikarchundury-site-data/main/json_data/songs.json.bin',
+  },
+  // Avatar / misc image links used by pages
+  remoteImages: {
+    meImg: 'https://raw.githubusercontent.com/srikarchundury/srikarchundury-site-data/main/image_data/profile_pic.jpeg.bin',
   },
   navSections: [
-    { title: 'Home', href: '/', icon: 'Home' },
+  { title: 'Home', href: '/home', icon: 'Home' },
     { title: 'Bio', href: '/bio', icon: 'Info' },
     { title: 'Education', href: '/education', icon: 'School' },
     { title: 'Experience', href: '/experience', icon: 'Work' },

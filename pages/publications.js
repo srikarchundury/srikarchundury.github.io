@@ -2,6 +2,7 @@ import Head from 'next/head';
 import { useEffect, useState } from 'react';
 import CircularProgress from '@mui/material/CircularProgress';
 import { readJSON } from '../utils/readRaw';
+import { siteConfig } from '../utils/siteConfig';
 import { colors } from '../utils/colors';
 // import MainContainer from '../components/MainContainer';
 import { Box } from '@mui/material';
@@ -12,7 +13,7 @@ export default function PublicationsPage() {
 	const [publications, setPublications] = useState(null);
 
 	useEffect(() => {
-		readJSON('https://raw.githubusercontent.com/srikarchundury/srikarchundury-site-data/main/json_data/publications.json.bin')
+		readJSON(siteConfig.data.publications)
 			.then(setPublications)
 			.catch(console.error);
 	}, []);
