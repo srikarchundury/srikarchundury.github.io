@@ -11,6 +11,7 @@ export const siteConfig = {
     twitter: 'https://x.com/chundurysrikar',
     threads: 'https://www.threads.net/@chundurysrikar',
     orcid: 'https://orcid.org/0000-0002-1234-5678', // update as needed
+    googleScholar: 'https://scholar.google.com/citations?user=FITobwkAAAAJ&hl=en&authuser=2', // update as needed
   },
   profileImages: {
     selfie: 'https://raw.githubusercontent.com/srikarchundury/srikarchundury-site-data/main/image_data/me.jpeg.bin',

@@ -20,6 +20,7 @@ import SchoolIcon from '@mui/icons-material/School';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import GoogleScholarIcon from '@mui/icons-material/School';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
@@ -149,6 +150,11 @@ export default function Sidebar({ open, isMobile, layoutMode }) {
 						       <Box sx={{ display: 'inline-flex', alignItems: 'center', verticalAlign: 'middle' }}>
 							       <OrcidIcon size={orcidIconSize} />
 						       </Box>
+					       </IconButton>
+				       </Tooltip>
+					   <Tooltip title="Google Scholar">
+					       <IconButton href={siteConfig.social.googleScholar} target="_blank" sx={{ p: 0.5, m: 0.5, minWidth: 'unset', minHeight: 'unset', width: 40, height: 40, display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
+						       <GoogleScholarIcon sx={{ color: colors.scholar, fontSize: { xs: 22, sm: 26 }, width: 26, height: 26, display: 'block' }} />
 					       </IconButton>
 				       </Tooltip>
 			       </Box>

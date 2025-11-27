@@ -28,4 +28,5 @@ export const colors = {
   github: '#171515',
   linkedin: '#0077B5',
   orcid: '#A6CE39',
+  scholar: '#4285F4',
 };
