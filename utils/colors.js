@@ -2,29 +2,32 @@
 // Usage: import { colors } from '@/utils/colors';
 
 export const colors = {
-  primary: '#1a237e', // deep indigo, LaTeX/IEEE/ACM style
-  shadowBlue: '#1976d2', // blue for card shadow/borders
-  accent: '#fafbfc',
-  border: '#e0e0e0',
-  text: '#444',
-  mutedText: '#555', // for less prominent text
-  secondaryText: '#666', // for even lighter text
-  heading: '#1a237e', // for all main headings
-  highlight: '#1976d2', // for links, highlights
-  bodyText: '#222', // for main body text
-  subText: '#444', // for secondary body text
-  divider: '#e0e0e0',
-  sectionTitle: '#1a237e',
-  // sectionUnderline: '#1a237e',
-  sectionUnderline: '#1976d2',
-  cardShadow: '#2221',
-  cardBg: '#fafbfc',
-  cardBorder: '#e0e0e0',
-  imageBg: '#f5f5f5',
-  blogBg: '#e3eafc',
-  // blogUnderline: '#90caf9',
-  blogUnderline: '#1976d2',
-  highlightBg: 'rgba(25,118,210,0.08)',
+  primary: '#1f3a5f',
+  shadowBlue: '#2f5f8f',
+  accent: '#fcfbf8',
+  border: '#d7d3c8',
+  text: '#2f3030',
+  mutedText: '#5e5f61',
+  secondaryText: '#6f7072',
+  heading: '#1f3a5f',
+  highlight: '#2f5f8f',
+  bodyText: '#242526',
+  subText: '#474a4f',
+  divider: '#d7d3c8',
+  sectionTitle: '#1f3a5f',
+  sectionUnderline: '#2f5f8f',
+  cardShadow: 'rgba(31,58,95,0.14)',
+  cardBg: '#fcfbf8',
+  cardBorder: '#d7d3c8',
+  imageBg: '#ece8df',
+  blogBg: '#f1ede4',
+  blogUnderline: '#2f5f8f',
+  highlightBg: 'rgba(47,95,143,0.12)',
+  pageBg: '#f3f2ee',
+  white: '#ffffff',
+  linkHover: '#173151',
+  activeNavBg: 'rgba(31,58,95,0.10)',
+  focusRing: '#2f5f8f',
   github: '#171515',
   linkedin: '#0077B5',
   orcid: '#A6CE39',

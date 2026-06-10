@@ -8,29 +8,26 @@ import { Box } from '@mui/material';
  * - Ensures content never overflows
  */
 export default function MainContainer({ children, sidebarWidth = 240, sidebarOpen = true, ...props }) {
-  // Define your desired left/right and top/bottom padding here
-  const horizontalPadding = 50; // px
-  const verticalPadding = 30; // px
-
-  // Always apply left and right padding for consistency, regardless of sidebar state
   return (
     <Box
       component="main"
-      sx={theme => ({
-        width: '100vw',
+      id="main-content"
+      sx={{
+        width: '100%',
         minWidth: 0,
         ml: 0,
         mr: 0,
-        pl: { xs: `${horizontalPadding}px`, sm: `${horizontalPadding}px` },
-        pr: { xs: `${horizontalPadding}px`, sm: `${horizontalPadding}px` },
-        pt: { xs: `${verticalPadding}px`, sm: `${verticalPadding}px` },
-        pb: { xs: `${verticalPadding}px`, sm: `${verticalPadding}px` },
+        pl: { xs: '16px', sm: '24px', md: '32px', lg: '48px' },
+        pr: { xs: '16px', sm: '24px', md: '32px', lg: '48px' },
+        pt: { xs: '20px', sm: '24px', md: '28px', lg: '30px' },
+        pb: { xs: '20px', sm: '24px', md: '28px', lg: '30px' },
         textAlign: 'left',
         boxSizing: 'border-box',
         flexGrow: 1,
-        maxWidth: '100vw',
+        maxWidth: '1400px',
+        marginInline: 'auto',
         transition: 'padding 0.5s cubic-bezier(0.4,0,0.2,1), margin 0.5s cubic-bezier(0.4,0,0.2,1);',
-      })}
+      }}
       {...props}
     >
       {children}

@@ -1,8 +1,7 @@
 // Breadcrumbs.js
 import React from 'react';
 import Link from 'next/link';
-import { Box, Typography, Breadcrumbs as MUIBreadcrumbs } from '@mui/material';
-import HomeIcon from '@mui/icons-material/Home';
+import { Box, Typography, Breadcrumbs as MUIBreadcrumbs, useMediaQuery } from '@mui/material';
 import { siteConfig } from '../utils/siteConfig';
 
 
@@ -13,10 +12,16 @@ siteConfig.navSections.forEach(section => {
   routeMap[section.href] = section.title;
 });
 siteConfig.blogSections.forEach(section => {
-  routeMap[section.href] = section.title;
+  if (section.href) {
+    routeMap[section.href] = section.title;
+  }
 });
+routeMap['/cv'] = 'CV';
 
 function getBreadcrumbs(pathname) {
+  if (pathname === '/' || pathname === '/home') {
+    return [{ href: '/', label: 'Home' }];
+  }
   // Split and accumulate path
   const segments = pathname.split('/').filter(Boolean);
   let path = '';
@@ -38,11 +43,16 @@ function getBreadcrumbs(pathname) {
 
 export default function Breadcrumbs({ pathname }) {
   const crumbs = getBreadcrumbs(pathname);
+  const isCompact = useMediaQuery('(max-width:900px)');
+  const compactCrumbs = isCompact && crumbs.length > 2
+    ? [crumbs[0], crumbs[crumbs.length - 1]]
+    : crumbs;
+
   return (
-    <Box sx={{ ml: 2, mr: 2, display: 'flex', alignItems: 'center', minWidth: 0 }}>
-      <MUIBreadcrumbs separator="→" aria-label="breadcrumb" sx={{ color: 'inherit', fontFamily: 'serif', fontSize: '1.05rem' }}>
-        {crumbs.map((crumb, idx) =>
-          idx === crumbs.length - 1 ? (
+    <Box sx={{ ml: { xs: 0.5, sm: 1 }, mr: { xs: 0.6, sm: 1.2 }, display: 'flex', alignItems: 'center', minWidth: 0, overflow: 'hidden' }}>
+      <MUIBreadcrumbs separator="→" aria-label="breadcrumb" sx={{ color: 'inherit', fontFamily: 'serif', fontSize: { xs: '0.9rem', sm: '0.98rem', md: '1.02rem' }, minWidth: 0, overflow: 'hidden', whiteSpace: 'nowrap' }}>
+        {compactCrumbs.map((crumb, idx) =>
+          idx === compactCrumbs.length - 1 ? (
             <Typography key={idx} color="text.primary" sx={{ fontWeight: 600, color: 'inherit', fontFamily: 'serif', textDecoration: 'underline' }}>
               {crumb.label}
             </Typography>

@@ -21,16 +21,14 @@ import MenuBookIcon from '@mui/icons-material/MenuBook';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GoogleScholarIcon from '@mui/icons-material/School';
-import MenuIcon from '@mui/icons-material/Menu';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import CircularProgress from '@mui/material/CircularProgress';
 import { readImage } from '../utils/readRaw';
 import { useAvatarCache } from './AvatarCacheContext';
+import { useLinks } from './LinksContext';
 import { colors } from '../utils/colors';
 import { siteConfig } from '../utils/siteConfig';
-
-const selfieUrl = siteConfig.profileImages.selfie;
 
 const iconSx = {
 	color: colors.primary,
@@ -38,8 +36,6 @@ const iconSx = {
 	minWidth: 0,
 };
 
-const githubIconSize = 50;
-const linkedinIconSize = 50;
 const orcidIconSize = 25;
 const iconMap = {
 	Home: <HomeIcon sx={iconSx} />,
@@ -67,7 +63,7 @@ function OrcidIcon({ size = 40 }) {
 			aria-label="ORCID iD icon"
 			style={{ display: 'inline-block', verticalAlign: 'middle' }}
 		>
-			<circle cx="128" cy="128" r="128" fill="#A6CE39" />
+			<circle cx="128" cy="128" r="128" fill={colors.orcid} />
 			<g fill="#fff">
 				<path d="M86.3 70.5v115h-18V70.5h18zm-9 132.8c-6 0-10.7 4.8-10.7 10.6 0 6 4.7 10.6 10.7 10.6s10.6-4.7 10.6-10.6-4.7-10.6-10.6-10.6z"/>
 				<path d="M204 159.7c0 35-20.8 56.6-51.2 56.6-30.4 0-49.5-21.5-49.5-55.3 0-34.4 20.3-56 51-56 31 0 49.7 22 49.7 54.7zm-81.7 1c0 23.4 11.2 38.3 31 38.3 19.7 0 30.8-15.3 30.8-39 0-22.8-11-38-30.5-38-19.5 0-31.3 15.1-31.3 38.7z"/>
@@ -76,11 +72,15 @@ function OrcidIcon({ size = 40 }) {
 	);
 }
 
-export default function Sidebar({ open, isMobile, layoutMode }) {
+export default function Sidebar({ open, isMobile, layoutMode, onClose, onNavigate, headerHeight = 64, footerHeight = 36 }) {
 	const { avatarSrc, setAvatarSrc, loading, setLoading } = useAvatarCache();
+	const { links } = useLinks();
+	const social = links?.social || {};
+	const selfieUrl = links?.profileImages?.selfie;
 	const router = useRouter();
+	const isCvActive = router.pathname === '/cv';
 	useEffect(() => {
-		if (!avatarSrc) {
+		if (!avatarSrc && selfieUrl) {
 			setLoading(true);
 			readImage(selfieUrl)
 				.then(src => {
@@ -91,19 +91,20 @@ export default function Sidebar({ open, isMobile, layoutMode }) {
 					setLoading(false);
 				});
 		}
-	}, [avatarSrc, setAvatarSrc, setLoading]);
+	}, [avatarSrc, selfieUrl, setAvatarSrc, setLoading]);
        return (
 	       <Drawer
 		       variant={isMobile ? 'temporary' : 'persistent'}
 		       anchor="left"
 		       open={open}
 		       ModalProps={{ keepMounted: true }}
+		       onClose={onClose}
 		       sx={{
 			       width: 240,
 			       flexShrink: 0,
 			       zIndex: 1200,
-			       height: layoutMode === 'between' ? 'calc(100vh - 64px - 20px)' : '100vh',
-			       top: layoutMode === 'between' ? 64 : 0,
+			       height: layoutMode === 'between' ? `calc(100vh - ${headerHeight}px - ${footerHeight}px)` : '100vh',
+			       top: layoutMode === 'between' ? headerHeight : 0,
 			       position: layoutMode === 'between' ? 'sticky' : 'fixed',
 			       transition: 'width 350ms cubic-bezier(0.4,0,0.2,1)',
 			       '& .MuiDrawer-paper': {
@@ -111,8 +112,8 @@ export default function Sidebar({ open, isMobile, layoutMode }) {
 				       boxSizing: 'border-box',
 				       background: colors.accent,
 				       // borderRight removed
-				       height: layoutMode === 'between' ? 'calc(100vh - 64px - 20px)' : '100vh',
-				       top: layoutMode === 'between' ? 64 : 0,
+				       height: layoutMode === 'between' ? `calc(100vh - ${headerHeight}px - ${footerHeight}px)` : '100vh',
+				       top: layoutMode === 'between' ? headerHeight : 0,
 				       position: layoutMode === 'between' ? 'sticky' : 'fixed',
 				       transition: 'width 350ms cubic-bezier(0.4,0,0.2,1)',
 			       },
@@ -130,53 +131,109 @@ export default function Sidebar({ open, isMobile, layoutMode }) {
 			       <Avatar
 				       src={avatarSrc || undefined}
 				       alt={siteConfig.name}
-				       sx={{ width: 160, height: 240, margin: '0 auto', objectFit: 'cover', objectPosition: 'top', bgcolor: '#bdbdbd', fontSize: 56, boxShadow: 2 }}
+				       sx={{ width: 170, height: 170, margin: '0 auto', objectFit: 'cover', objectPosition: 'top', borderRadius: '10px', bgcolor: colors.imageBg, fontSize: 56, boxShadow: 2 }}
 			       >
 				       {!avatarSrc && (siteConfig.name ? siteConfig.name.split(' ').map(n => n[0]).join('').slice(0,2) : 'SC')}
 			       </Avatar>
 			       <Box>
+				       {social.github && (
 				       <Tooltip title="GitHub">
-					       <IconButton href={siteConfig.social.github} target="_blank" sx={{ p: 0.5, m: 0.5, minWidth: 'unset', minHeight: 'unset', width: 40, height: 40, display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
+				       <IconButton href={social.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub" sx={{ p: 0.5, m: 0.5, minWidth: 'unset', minHeight: 'unset', width: 40, height: 40, display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
 						       <GitHubIcon sx={{ color: colors.github, fontSize: { xs: 22, sm: 26 }, width: 26, height: 26, display: 'block' }} />
 					       </IconButton>
 				       </Tooltip>
+				       )}
+				       {social.linkedin && (
 				       <Tooltip title="LinkedIn">
-					       <IconButton href={siteConfig.social.linkedin} target="_blank" sx={{ p: 0.5, m: 0.5, minWidth: 'unset', minHeight: 'unset', width: 40, height: 40, display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
+				       <IconButton href={social.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" sx={{ p: 0.5, m: 0.5, minWidth: 'unset', minHeight: 'unset', width: 40, height: 40, display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
 						       <LinkedInIcon sx={{ color: colors.linkedin, fontSize: { xs: 22, sm: 26 }, width: 26, height: 26, display: 'block' }} />
 					       </IconButton>
 				       </Tooltip>
+				       )}
+				       {social.orcid && (
 				       <Tooltip title="ORCID">
-					       <IconButton href={siteConfig.social.orcid} target="_blank">
+				       <IconButton href={social.orcid} target="_blank" rel="noopener noreferrer" aria-label="ORCID">
 						       <Box sx={{ display: 'inline-flex', alignItems: 'center', verticalAlign: 'middle' }}>
 							       <OrcidIcon size={orcidIconSize} />
 						       </Box>
 					       </IconButton>
 				       </Tooltip>
+				       )}
+				   {social.googleScholar && (
 					   <Tooltip title="Google Scholar">
-					       <IconButton href={siteConfig.social.googleScholar} target="_blank" sx={{ p: 0.5, m: 0.5, minWidth: 'unset', minHeight: 'unset', width: 40, height: 40, display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
+				       <IconButton href={social.googleScholar} target="_blank" rel="noopener noreferrer" aria-label="Google Scholar" sx={{ p: 0.5, m: 0.5, minWidth: 'unset', minHeight: 'unset', width: 40, height: 40, display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
 						       <GoogleScholarIcon sx={{ color: colors.scholar, fontSize: { xs: 22, sm: 26 }, width: 26, height: 26, display: 'block' }} />
 					       </IconButton>
 				       </Tooltip>
+				       )}
+					       <Box sx={{ mt: 0.6 }}>
+						       <Box
+							       component="button"
+							       type="button"
+							       onClick={() => {
+								       if (!isCvActive) {
+									       router.push('/cv');
+								       }
+								       if (isMobile && onNavigate) onNavigate();
+							       }}
+								       aria-label="Open CV page"
+							       sx={{
+								       display: 'inline-block',
+								       color: isCvActive ? colors.primary : colors.highlight,
+								       fontSize: '0.84rem',
+								       fontWeight: 700,
+								       letterSpacing: 0.7,
+								       textTransform: 'uppercase',
+								       textDecoration: 'none',
+								       border: 0,
+								       background: 'transparent',
+								       cursor: 'pointer',
+								       borderBottom: `1px solid ${isCvActive ? colors.primary : colors.highlight}`,
+								       '&:hover': {
+									       color: colors.primary,
+									       borderBottomColor: colors.primary,
+								       },
+							       }}
+						       >
+							       CV
+						       </Box>
+					       </Box>
 			       </Box>
 				       </Box>
 				       <Divider />
 				       <List>
-					       {sections.map((section, index) => (
+					       {sections.map((section, index) => {
+						       const isActive = router.pathname === section.href || (section.href === '/' && router.pathname === '/home');
+						       return (
 						       <ListItem
 							       button
 							       key={index}
-							       selected={router.pathname === section.href}
+							       selected={isActive}
 							       onClick={() => {
-								       router.push(section.href);
-								       if (isMobile) {
-									       // Sidebar closes on mobile after navigation, handled by Layout
+								       if (!isActive) {
+									       router.push(section.href);
 								       }
+								       if (isMobile && onNavigate) onNavigate();
+							       }}
+							       sx={{
+								       borderRadius: '8px',
+								       mx: 1,
+								       mb: 0.5,
+								       background: isActive ? colors.activeNavBg : 'transparent',
+								       '&:hover': { background: colors.activeNavBg },
 							       }}
 						       >
-							       <ListItemIcon sx={{ fontSize: { xs: '6vw', sm: '2vw', md: '1.7vw', lg: '1.5vw', xl: '1.3vw' }, minWidth: 40 }}>{section.icon}</ListItemIcon>
-							       <ListItemText primary={section.title} />
+							       <ListItemIcon sx={{ fontSize: { xs: '6vw', sm: '2vw', md: '1.7vw', lg: '1.5vw', xl: '1.3vw' }, minWidth: 40, color: isActive ? colors.primary : colors.subText }}>{section.icon}</ListItemIcon>
+							       <ListItemText
+								       primary={section.title}
+								       primaryTypographyProps={{
+									       fontWeight: isActive ? 700 : 500,
+									       color: isActive ? colors.primary : colors.text,
+								       }}
+							       />
 						       </ListItem>
-					       ))}
+						       );
+					       })}
 				       </List>
 			       </>
 		       )}

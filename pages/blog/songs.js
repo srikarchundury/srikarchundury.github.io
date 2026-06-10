@@ -3,15 +3,18 @@ import Head from 'next/head';
 import CircularProgress from '@mui/material/CircularProgress';
 import { readJSON } from '../../utils/readRaw';
 import { colors } from '../../utils/colors';
-import { siteConfig } from '../../utils/siteConfig';
+import { useLinks } from '../../components/LinksContext';
 
 export default function SongsBlogPage() {
   const [songs, setSongs] = useState(null);
+  const { links } = useLinks();
+
   useEffect(() => {
-    readJSON(siteConfig.data.songs)
+    if (!links?.data?.songs) return;
+    readJSON(links.data.songs)
       .then(setSongs)
       .catch(() => setSongs([]));
-  }, []);
+  }, [links]);
 
   if (!songs) return (
     <div style={{ padding: 32, textAlign: 'center' }}><CircularProgress /></div>
@@ -24,7 +27,7 @@ export default function SongsBlogPage() {
       </Head>
   <div>
         <div style={{ marginBottom: 24 }}>
-          <h1 style={{ fontSize: '2rem', fontWeight: 700, letterSpacing: 0.5, color: colors.primary, fontFamily: 'serif', margin: 0 }}>Songs & Vibes</h1>
+          <h1 style={{ fontSize: '2rem', fontWeight: 700, letterSpacing: 0.5, color: colors.primary, fontFamily: 'serif', margin: 0 }}>Songs</h1>
           <div style={{ width: 60, height: 4, background: colors.shadowBlue, borderRadius: 2, marginTop: 8, marginBottom: 4 }} />
         </div>
         <ol style={{ paddingLeft: 0, margin: 0 }}>

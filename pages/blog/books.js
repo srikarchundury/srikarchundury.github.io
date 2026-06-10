@@ -3,15 +3,18 @@ import Head from 'next/head';
 import CircularProgress from '@mui/material/CircularProgress';
 import { readJSON } from '../../utils/readRaw';
 import { colors } from '../../utils/colors';
-import { siteConfig } from '../../utils/siteConfig';
+import { useLinks } from '../../components/LinksContext';
 
 export default function BooksBlogPage() {
   const [books, setBooks] = useState(null);
+  const { links } = useLinks();
+
   useEffect(() => {
-    readJSON(siteConfig.data.books)
+    if (!links?.data?.books) return;
+    readJSON(links.data.books)
       .then(setBooks)
       .catch(() => setBooks([]));
-  }, []);
+  }, [links]);
 
   if (!books) return (
     <div style={{ padding: 32, textAlign: 'center' }}><CircularProgress /></div>

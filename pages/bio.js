@@ -16,25 +16,28 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import EmailIcon from '@mui/icons-material/Email';
 import SchoolIcon from '@mui/icons-material/School';
 import { readJSON, readImage, readRaw } from '../utils/readRaw';
-import { siteConfig } from '../utils/siteConfig';
+import { useLinks } from '../components/LinksContext';
 
 export default function BioPage() {
 		const [bio, setBio] = useState(null);
 		const [avatarSrc, setAvatarSrc] = useState(null);
 		const [avatarLoading, setAvatarLoading] = useState(true);
 		const [resumeLoading, setResumeLoading] = useState(false);
+		const { links } = useLinks();
+		const resumeUrl = links?.files?.resume;
 
 		useEffect(() => {
-			readJSON(siteConfig.data.bio)
+			if (!links?.data?.bio) return;
+			readJSON(links.data.bio)
 				.then(setBio)
 				.catch(err => {
 					console.error('Failed to load bio:', err);
 				});
-		}, []);
+		}, [links]);
 
 		useEffect(() => {
-		// Use me.img.bin for avatar (centralized in siteConfig)
-		const meImg = siteConfig.remoteImages.meImg;
+		const meImg = links?.remoteImages?.meImg;
+		if (!meImg) return;
 			setAvatarLoading(true);
 			readImage(meImg)
 				.then(src => {
@@ -45,20 +48,20 @@ export default function BioPage() {
 					setAvatarSrc(null);
 					setAvatarLoading(false);
 				});
-		}, []);
+		}, [links]);
 
 		async function handleDownloadResume() {
-			if (resumeLoading) return;
+			if (resumeLoading || !resumeUrl) return;
 			setResumeLoading(true);
 			try {
 				// readRaw returns a Uint8Array of decoded bytes
-				const bytes = await readRaw(siteConfig.files.resume);
+				const bytes = await readRaw(resumeUrl);
 				const blob = new Blob([bytes], { type: 'application/pdf' });
 				const url = URL.createObjectURL(blob);
 				// create a temporary anchor to trigger download
 				const a = document.createElement('a');
 				a.href = url;
-				a.download = 'resume.pdf';
+				a.download = 'srikarChundury_cv.pdf';
 				document.body.appendChild(a);
 				a.click();
 				a.remove();
@@ -67,7 +70,7 @@ export default function BioPage() {
 			} catch (err) {
 				console.error('Failed to download resume:', err);
 				// fallback: open raw link in new tab
-				window.open(siteConfig.files.resume, '_blank', 'noopener');
+				window.open(resumeUrl, '_blank', 'noopener');
 			} finally {
 				setResumeLoading(false);
 			}
@@ -91,11 +94,24 @@ export default function BioPage() {
 								<div>
 									<h1 style={{ fontSize: '2rem', fontWeight: 700, letterSpacing: 0.5, color: colors.primary, fontFamily: 'serif', margin: 0 }}>{bio.name}</h1>
 									<div style={{ width: 60, height: 4, background: colors.shadowBlue, borderRadius: 2, marginTop: 8, marginBottom: 4 }} />
-									<span style={{ color: colors.mutedText, fontSize: '1rem', fontStyle: 'italic' }}></span>
 								</div>
 								<div>
-									<Button variant="contained" color="primary" startIcon={<DownloadIcon />} onClick={handleDownloadResume} disabled={resumeLoading}>
-										{resumeLoading ? 'Downloading...' : 'RESUME'}
+									<Button
+										variant="contained"
+										color="primary"
+										startIcon={<DownloadIcon />}
+										onClick={handleDownloadResume}
+										disabled={resumeLoading}
+										sx={{
+											borderRadius: '8px',
+											boxShadow: `0 4px 14px ${colors.cardShadow}`,
+											'&:hover': {
+												color: colors.white,
+												background: colors.linkHover,
+											},
+										}}
+									>
+										{resumeLoading ? 'Downloading CV...' : 'Download CV'}
 									</Button>
 								</div>
 							</div>
@@ -112,9 +128,9 @@ export default function BioPage() {
 										))}
 									</div>
 									{/* Advisor */}
-									{siteConfig.advisor && (
+									{links?.advisor && (
 										<div style={{ marginTop: 10, fontSize: '0.95rem' }}>
-											<strong>Advisor:</strong> <a href={siteConfig.advisor.url} target="_blank" rel="noopener noreferrer">{siteConfig.advisor.name}</a>
+											<strong>Advisor:</strong> <a href={links.advisor.url} target="_blank" rel="noopener noreferrer">{links.advisor.name}</a>
 										</div>
 									)}
 									<div style={{ display: 'flex', gap: 8, marginTop: 8 }}>
@@ -128,13 +144,13 @@ export default function BioPage() {
 							)}
 							{bio.interests && bio.interests.length > 0 && (
 								<div style={{ marginBottom: 8 }}>
-									<div style={{ marginBottom: 6, display: 'flex', alignItems: 'center', gap: 8 }}>
-										<span style={{ fontSize: '1.15rem', fontWeight: 700, color: colors.primary, fontFamily: 'serif' }}>Research Interests</span>
-										<div style={{ flex: 1, height: 2, background: colors.highlight, borderRadius: 1, minWidth: 30 }} />
+									<div style={{ marginBottom: 8 }}>
+										<div style={{ fontSize: '1.15rem', fontWeight: 700, color: colors.primary, fontFamily: 'serif', marginBottom: 7 }}>Research Interests</div>
+										<div style={{ width: 72, height: 2, background: colors.highlight, borderRadius: 1 }} />
 									</div>
-									<ul style={{ paddingLeft: 18, margin: 0 }}>
+									<ul style={{ paddingLeft: 18, margin: 0, lineHeight: 1.55 }}>
 										{bio.interests.map((interest, i) => (
-											<li key={i} style={{ color: colors.highlight, fontWeight: 500, fontSize: '1.02em', marginBottom: 2, fontFamily: 'serif' }}>{interest}</li>
+											<li key={i} style={{ color: colors.highlight, fontWeight: 500, fontSize: '1.02em', marginBottom: 4, fontFamily: 'serif' }}>{interest}</li>
 										))}
 									</ul>
 								</div>

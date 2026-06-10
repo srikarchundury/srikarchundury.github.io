@@ -1,20 +1,30 @@
 /* Global styles for Srikar Chundury's site - IEEE/ACM LaTeX inspired */
 
+:root {
+  --page-bg: #f3f2ee;
+  --text-primary: #242526;
+  --heading: #1f3a5f;
+  --link: #2f5f8f;
+  --link-hover: #173151;
+  --focus-ring: #2f5f8f;
+  --code-bg: #ece8df;
+}
+
 html, body {
   margin: 0;
   padding: 0;
   font-family: 'Computer Modern', 'Latin Modern Roman', 'Times New Roman', Times, serif;
-  background: #f9f9f9;
-  color: #222;
-  font-size: 17px;
-  line-height: 1.6;
+  background: var(--page-bg);
+  color: var(--text-primary);
+  font-size: clamp(16px, 0.95rem + 0.2vw, 18px);
+  line-height: 1.65;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Computer Modern', 'Latin Modern Roman', 'Times New Roman', Times, serif;
   font-weight: 700;
-  letter-spacing: 0.5px;
-  color: #1a237e;
+  letter-spacing: 0.3px;
+  color: var(--heading);
   margin-top: 1.2em;
   margin-bottom: 0.5em;
 }
@@ -24,13 +34,22 @@ p, li, span, div, a, label, input, textarea {
 }
 
 a {
-  color: #1976d2;
+  color: var(--link);
   text-decoration: underline;
 }
 
 a:hover {
-  color: #0d47a1;
+  color: var(--link-hover);
   text-decoration: none;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+[role='button']:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
 }
 
 ol, ul {
@@ -39,7 +58,7 @@ ol, ul {
 
 code, pre {
   font-family: 'Fira Mono', 'Consolas', 'Monaco', monospace;
-  background: #f5f5f5;
+  background: var(--code-bg);
   padding: 2px 4px;
   border-radius: 3px;
 }
@@ -47,4 +66,22 @@ code, pre {
 /* MUI overrides for LaTeX look */
 .MuiTypography-root {
   font-family: 'Computer Modern', 'Latin Modern Roman', 'Times New Roman', Times, serif;
+}
+
+/* Professional interaction defaults for primary and outlined actions */
+.MuiButton-root {
+  text-transform: none;
+  letter-spacing: 0.01em;
+}
+
+.MuiButton-contained {
+  transition: background-color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
+}
+
+.MuiButton-contained:hover {
+  color: #ffffff;
+}
+
+.MuiButton-outlined {
+  transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease;
 }

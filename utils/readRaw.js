@@ -1,8 +1,8 @@
 const me = "chundury";
 
 export async function readRaw(url, provided = me) {
-	const res = await fetch(url);
-	if (!res.ok) throw new Error(`Failed to fetch ${url}`);
+	const res = await fetch(url, { cache: 'no-store' });
+	if (!res.ok) throw new Error(`Failed to fetch ${url} (${res.status} ${res.statusText})`);
 	const scrambled = new Uint8Array(await res.arrayBuffer());
 	const key = Array.from(provided).map(c => c.charCodeAt(0));
 	const unscrambled = scrambled.map((byte, idx) => byte ^ key[idx % key.length]);
