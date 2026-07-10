@@ -1,1 +1,0 @@
-(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[332],{2936:(_,u,n)=>{(window.__NEXT_P=window.__NEXT_P||[]).push(["/",function(){return n(3468)}])},3468:(_,u,n)=>{"use strict";n.r(u),n.d(u,{default:()=>t});var e=n(7876),s=n(1571);function t(){return(0,e.jsx)(s.default,{})}}},_=>{_.O(0,[683,571,636,593,792],()=>_(_.s=2936)),_N_E=_.O()}]);

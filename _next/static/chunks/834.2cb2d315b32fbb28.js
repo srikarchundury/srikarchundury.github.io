@@ -1,0 +1,1 @@
+self.onmessage=e=>{let{id:f,buffer:r,key:a}=e.data,t=new Uint8Array(r),s=Array.from(a).map(e=>e.charCodeAt(0));for(let e=0;e<t.length;e++)t[e]^=s[e%s.length];self.postMessage({id:f,buffer:t.buffer},[t.buffer])},_N_E={};

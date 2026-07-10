@@ -1,2 +1,4 @@
 User-agent: *
 Disallow:
+
+Sitemap: https://srikarchundury.github.io/sitemap.xml
