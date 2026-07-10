@@ -1,4 +1,4 @@
-import Head from 'next/head';
+import SeoHead from '../components/SeoHead';
 import { useEffect, useState } from 'react';
 import CircularProgress from '@mui/material/CircularProgress';
 import { readJSON } from '../utils/readRaw';
@@ -20,9 +20,11 @@ export default function HonorsPage() {
 
 	return (
 		<>
-			<Head>
-				<title>Honors & Awards | Srikar Chundury</title>
-			</Head>
+			<SeoHead
+				title="Honors & Awards"
+				description="Awards, honors, and recognitions received by Srikar Chundury."
+				path="/honors"
+			/>
 			<div>
 				<div style={{ marginBottom: 24 }}>
 					<h1 style={{ fontSize: 'clamp(1.55rem, 1.35rem + 1vw, 2rem)', fontWeight: 700, letterSpacing: 0.3, color: colors.sectionTitle, fontFamily: 'serif', margin: 0 }}>Honors & Awards</h1>

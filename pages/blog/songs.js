@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Head from 'next/head';
+import SeoHead from '../../components/SeoHead';
 import CircularProgress from '@mui/material/CircularProgress';
 import { readJSON } from '../../utils/readRaw';
 import { colors } from '../../utils/colors';
@@ -22,9 +22,12 @@ export default function SongsBlogPage() {
 
   return (
     <>
-      <Head>
-        <title>Songs | Blog | Srikar Chundury</title>
-      </Head>
+      <SeoHead
+        title="Songs | Blog"
+        description="Selected music tracks and playlists shared by Srikar Chundury."
+        path="/blog/songs"
+        noindex
+      />
   <div>
         <div style={{ marginBottom: 24 }}>
           <h1 style={{ fontSize: '2rem', fontWeight: 700, letterSpacing: 0.5, color: colors.primary, fontFamily: 'serif', margin: 0 }}>Songs</h1>

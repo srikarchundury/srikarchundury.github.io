@@ -1,4 +1,4 @@
-import Head from 'next/head';
+import SeoHead from '../components/SeoHead';
 
 import React, { useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
@@ -35,6 +35,7 @@ export default function HomePage() {
   const [publications, setPublications] = useState([]);
   const [projects, setProjects] = useState([]);
   const [honors, setHonors] = useState([]);
+  const [newsVisibleCount, setNewsVisibleCount] = useState(4);
   const { links } = useLinks();
 
   const loadLandingData = React.useCallback(() => {
@@ -49,16 +50,14 @@ export default function HomePage() {
       readJSON(links.data.publications),
       readJSON(links.data.projects).catch(() => []),
       readJSON(links.data.honors),
-      links.images?.[0]?.url ? readImage(links.images[0].url) : Promise.resolve(null),
     ])
-      .then(([landingData, bioData, publicationsData, projectsData, honorsData, heroImg]) => {
+      .then(([landingData, bioData, publicationsData, projectsData, honorsData]) => {
         if (!isMounted) return;
         setLanding(landingData || {});
         setBio(bioData || {});
         setPublications(Array.isArray(publicationsData) ? publicationsData : []);
         setProjects(Array.isArray(projectsData) ? projectsData : []);
         setHonors(Array.isArray(honorsData) ? honorsData : []);
-        setHeroImage(heroImg);
         setLoading(false);
       })
       .catch((err) => {
@@ -74,6 +73,16 @@ export default function HomePage() {
   useEffect(() => {
     loadLandingData();
   }, [loadLandingData]);
+
+  useEffect(() => {
+    const heroUrl = links?.images?.[0]?.url;
+    if (!heroUrl) return;
+    let isMounted = true;
+    readImage(heroUrl)
+      .then((src) => { if (isMounted) setHeroImage(src); })
+      .catch(() => {});
+    return () => { isMounted = false; };
+  }, [links]);
 
   const counts = landing?.highlights || {};
 
@@ -136,7 +145,7 @@ export default function HomePage() {
       <Paper elevation={0} sx={sectionCardSx}>
         <SectionHeading title={landingSectionTitle(landing, 'news', 'Updates')} />
         <Stack spacing={1.1}>
-          {(landing?.news || []).slice(0, 4).map((item, idx) => (
+          {(landing?.news || []).slice(0, newsVisibleCount).map((item, idx) => (
             <Box key={`${item.title}-${idx}`}>
               {item.link ? (
                 <a href={item.link} target="_blank" rel="noopener noreferrer" style={{ color: colors.bodyText, fontWeight: 600, textDecoration: 'underline', lineHeight: 1.35 }}>
@@ -149,6 +158,28 @@ export default function HomePage() {
             </Box>
           ))}
         </Stack>
+        {(landing?.news || []).length > newsVisibleCount ? (
+          <Box sx={{ textAlign: 'right', mt: 1.2 }}>
+            <Box
+              component="button"
+              type="button"
+              onClick={() => setNewsVisibleCount((count) => count + 4)}
+              sx={{
+                color: colors.highlight,
+                fontWeight: 600,
+                textDecoration: 'underline',
+                fontSize: '0.95rem',
+                background: 'transparent',
+                border: 0,
+                p: 0,
+                cursor: 'pointer',
+                fontFamily: 'inherit',
+              }}
+            >
+              Show more
+            </Box>
+          </Box>
+        ) : null}
       </Paper>
     ),
   };
@@ -181,13 +212,11 @@ export default function HomePage() {
 
   return (
     <>
-      <Head>
-        <title>Home | Srikar Chundury</title>
-        <meta
-          name="description"
-          content="Srikar Chundury — PhD student at NC State working on HPC, quantum simulation, and ML compilation. Publications, projects, and academic background."
-        />
-      </Head>
+      <SeoHead
+        title="Home"
+        description="Srikar Chundury — PhD student at NC State working on HPC, quantum simulation, and ML compilation. Publications, projects, and academic background."
+        path="/"
+      />
       <Box sx={{ display: 'grid', gap: { xs: 2, sm: 2.5, md: 3 } }}>
         <Paper elevation={0} sx={{ ...sectionCardSx, p: { xs: 2, sm: 2.5, md: 3 } }}>
           <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: '1.3fr 0.7fr' }, gap: 2.5, alignItems: 'stretch' }}>

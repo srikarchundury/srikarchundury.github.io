@@ -1,7 +1,6 @@
 
 import React, { useState } from 'react';
 import Sidebar from './Sidebar';
-import Footer from './Footer';
 import Header from './Header';
 import MainContainer from './MainContainer';
 import { Box, useMediaQuery } from '@mui/material';
@@ -10,7 +9,6 @@ import { colors } from '../utils/colors';
 export default function Layout({ children }) {
 	const SIDEBAR_WIDTH = 240;
 	const HEADER_HEIGHT = 64;
-	const FOOTER_HEIGHT = 36;
 	const isMobile = useMediaQuery('(max-width:900px)');
 	const [sidebarOpen, setSidebarOpen] = useState(!isMobile);
 	// Keep sidebar open on desktop, closed on mobile
@@ -45,19 +43,17 @@ export default function Layout({ children }) {
 				</a>
 				{/* Header always full width, fixed */}
 				<Header onMenuClick={toggleSidebar} sidebarOpen={sidebarOpen} />
-				{/* Add top and bottom padding to prevent content being hidden */}
-				<Box sx={{ flex: 1, display: 'flex', flexDirection: 'row', minHeight: 0, pt: `${HEADER_HEIGHT}px`, pb: `${FOOTER_HEIGHT}px` }}>
-					{/* Sidebar only fills between header and footer */}
+				{/* Add top padding to prevent content being hidden behind the fixed header */}
+				<Box sx={{ flex: 1, display: 'flex', flexDirection: 'row', minHeight: 0, pt: `${HEADER_HEIGHT}px` }}>
+					{/* Sidebar fills from below the header to the bottom of the viewport */}
 					{(sidebarOpen || isMobile) && (
-						<Sidebar open={sidebarOpen} toggleSidebar={toggleSidebar} isMobile={isMobile} layoutMode="between" onClose={closeSidebar} onNavigate={closeSidebar} headerHeight={HEADER_HEIGHT} footerHeight={FOOTER_HEIGHT} />
+						<Sidebar open={sidebarOpen} toggleSidebar={toggleSidebar} isMobile={isMobile} layoutMode="between" onClose={closeSidebar} onNavigate={closeSidebar} headerHeight={HEADER_HEIGHT} />
 					)}
 					{/* Main content area, flexes to fill space */}
 					<MainContainer px={0} py={0} sidebarWidth={SIDEBAR_WIDTH} sidebarOpen={sidebarOpen}>
 						{children}
 					</MainContainer>
 				</Box>
-				{/* Footer always full width at bottom, fixed */}
-				<Footer />
 			</Box>
 		);
 }

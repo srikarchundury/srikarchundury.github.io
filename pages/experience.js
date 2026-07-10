@@ -1,4 +1,4 @@
-import Head from 'next/head';
+import SeoHead from '../components/SeoHead';
 import { useEffect, useState } from 'react';
 import CircularProgress from '@mui/material/CircularProgress';
 import { readJSON } from '../utils/readRaw';
@@ -31,9 +31,11 @@ export default function ExperiencePage() {
 
 		return (
 			<>
-				<Head>
-					<title>Experience | Srikar Chundury</title>
-				</Head>
+				<SeoHead
+					title="Experience"
+					description="Professional and research experience of Srikar Chundury in high-performance computing and machine learning."
+					path="/experience"
+				/>
 				<div>
 					<div style={{ marginBottom: 24 }}>
 						<h1 style={{ fontSize: 'clamp(1.55rem, 1.35rem + 1vw, 2rem)', fontWeight: 700, letterSpacing: 0.3, color: colors.primary, fontFamily: 'serif', margin: 0 }}>Professional Experience</h1>

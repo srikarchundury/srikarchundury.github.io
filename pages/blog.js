@@ -10,7 +10,7 @@ import { siteConfig } from '../utils/siteConfig';
 import { useLinks } from '../components/LinksContext';
 import { colors } from '../utils/colors';
 import Box from '@mui/material/Box';
-import Head from 'next/head';
+import SeoHead from '../components/SeoHead';
 
 const iconMap = {
     MenuBook: <MenuBookIcon fontSize="medium" />,
@@ -31,9 +31,12 @@ export default function BlogPage() {
 
         return (
             <>
-                <Head>
-                    <title>Blog | Srikar Chundury</title>
-                </Head>
+                <SeoHead
+                    title="Blog"
+                    description="Personal blog by Srikar Chundury covering books, music, and notes."
+                    path="/blog"
+                    noindex
+                />
                 <div>
                     <div style={{ marginBottom: 24 }}>
                         <h1 style={{ fontSize: 'clamp(1.55rem, 1.35rem + 1vw, 2rem)', fontWeight: 700, letterSpacing: 0.3, color: colors.primary, fontFamily: 'serif', margin: 0 }}>Blog</h1>

@@ -1,4 +1,4 @@
-import Head from 'next/head';
+import SeoHead from '../components/SeoHead';
 import { useEffect, useState } from 'react';
 import CircularProgress from '@mui/material/CircularProgress';
 import { readJSON } from '../utils/readRaw';
@@ -22,9 +22,11 @@ export default function PublicationsPage() {
 
 		return (
 			<>
-				<Head>
-					<title>Publications | Srikar Chundury</title>
-				</Head>
+				<SeoHead
+					title="Publications"
+					description="Peer-reviewed publications and research papers authored by Srikar Chundury."
+					path="/publications"
+				/>
 				<div>
 					<Box mb={2}>
 						<h1 style={{ fontSize: 'clamp(1.55rem, 1.35rem + 1vw, 2rem)', fontWeight: 700, letterSpacing: 0.3, color: colors.primary, fontFamily: 'serif', margin: 0 }}>Publications</h1>

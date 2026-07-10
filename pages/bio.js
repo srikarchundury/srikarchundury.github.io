@@ -1,4 +1,4 @@
-import Head from 'next/head';
+import SeoHead from '../components/SeoHead';
 
 import { useEffect, useState } from 'react';
 import CircularProgress from '@mui/material/CircularProgress';
@@ -86,9 +86,11 @@ export default function BioPage() {
 
 				return (
 					<>
-						<Head>
-							<title>Bio | Srikar Chundury</title>
-						</Head>
+						<SeoHead
+							title="Bio"
+							description="Biography and background of Srikar Chundury, PhD student in Computer Science at NC State University."
+							path="/bio"
+						/>
 						<div style={{ marginBottom: 24 }}>
 							<div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16 }}>
 								<div>

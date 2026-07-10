@@ -27,6 +27,7 @@ export const colors = {
   white: '#ffffff',
   linkHover: '#173151',
   activeNavBg: 'rgba(31,58,95,0.10)',
+  hoverNavBg: 'rgba(31,58,95,0.05)',
   focusRing: '#2f5f8f',
   github: '#171515',
   linkedin: '#0077B5',

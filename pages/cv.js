@@ -1,4 +1,4 @@
-import Head from 'next/head';
+import SeoHead from '../components/SeoHead';
 import { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -50,10 +50,12 @@ export default function CvPage() {
 
   return (
     <>
-      <Head>
-        <title>CV | Srikar Chundury</title>
-        <meta name="robots" content="noindex" />
-      </Head>
+      <SeoHead
+        title="CV"
+        description="Curriculum vitae of Srikar Chundury."
+        path="/cv"
+        noindex
+      />
       <Box sx={{ minHeight: 'calc(100vh - 96px)', display: 'grid', gap: 1.5 }}>
         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 1.5, flexWrap: 'wrap' }}>
           <Typography sx={{ color: colors.heading, fontSize: { xs: '1.2rem', sm: '1.35rem' }, fontWeight: 700 }}>
