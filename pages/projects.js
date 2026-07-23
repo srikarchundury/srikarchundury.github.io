@@ -45,11 +45,16 @@ export default function ProjectsPage() {
 						   <li key={idx} style={{ marginBottom: 'clamp(14px, 2vw, 22px)', listStyle: 'none', borderLeft: `3px solid ${colors.shadowBlue}`, paddingLeft: 'clamp(12px, 1.8vw, 18px)', boxShadow: 'none' }}>
 						       <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 1 }}>
 								   <span style={{ fontWeight: 600, fontSize: 'clamp(0.98rem, 0.94rem + 0.35vw, 1.08rem)', color: colors.bodyText, fontFamily: 'serif' }}>{proj.title}</span>
-							       {proj.github && (
+							       {proj.github && typeof proj.github === 'string' && (
 									   <a href={proj.github} target="_blank" rel="noopener noreferrer" style={{ marginLeft: 8, color: colors.highlight, fontWeight: 500, fontSize: '0.98em', textDecoration: 'underline' }}>
 									       [GitHub]
 								       </a>
 							       )}
+							       {proj.github && Array.isArray(proj.github) && proj.github.map((link) => (
+									   <a key={link.url} href={link.url} target="_blank" rel="noopener noreferrer" style={{ marginLeft: 8, color: colors.highlight, fontWeight: 500, fontSize: '0.98em', textDecoration: 'underline' }}>
+									       [{link.label}]
+								       </a>
+							       ))}
 								   <span style={{ marginLeft: 'auto', color: colors.subText, fontSize: '0.94rem', fontStyle: 'italic' }}>{proj.duration}</span>
 						       </Box>
 							   <div style={{ fontSize: '0.95rem', color: colors.bodyText, marginTop: 4, lineHeight: 1.55 }}>{proj.description}</div>
