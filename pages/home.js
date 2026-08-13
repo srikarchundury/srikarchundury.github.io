@@ -214,7 +214,7 @@ export default function HomePage() {
     <>
       <SeoHead
         title="Home"
-        description="Srikar Chundury — PhD student at NC State working on HPC, quantum simulation, and ML compilation. Publications, projects, and academic background."
+        description="Srikar Chundury — PhD student at NC State working across the HPC stack (Slurm, application code, infrastructure) on quantum simulation and ML compilation."
         path="/"
       />
       <Box sx={{ display: 'grid', gap: { xs: 2, sm: 2.5, md: 3 } }}>
