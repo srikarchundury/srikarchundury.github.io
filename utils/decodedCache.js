@@ -1,6 +1,6 @@
 // Persistent cache for already-decoded scrambled assets, keyed by source URL.
 // Bump CACHE_NAME whenever site-data assets are meaningfully updated, to force fresh fetches.
-const CACHE_NAME = 'scrambled-assets-v1';
+const CACHE_NAME = 'scrambled-assets-v2';
 
 export async function getCachedDecoded(url) {
 	if (typeof caches === 'undefined') return null;
