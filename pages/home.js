@@ -251,13 +251,20 @@ export default function HomePage() {
               </Box>
             </Box>
 
-            <Paper elevation={0} sx={{ ...sectionCardSx, p: 0, overflow: 'hidden', minHeight: { xs: 180, md: 240 } }}>
+            <Paper elevation={0} sx={{ ...sectionCardSx, p: 0, overflow: 'hidden', position: 'relative', minHeight: { xs: 180, md: 240 } }}>
               {heroImage ? (
-                <img
-                  src={heroImage}
-                  alt={links?.images?.[0]?.label || 'Research and travel'}
-                  style={{ width: '100%', height: '100%', minHeight: 180, objectFit: 'cover' }}
-                />
+                <>
+                  <img
+                    src={heroImage}
+                    alt={links?.images?.[0]?.label || 'Research and travel'}
+                    style={{ width: '100%', height: '100%', minHeight: 180, objectFit: 'cover', display: 'block' }}
+                  />
+                  {links?.images?.[0]?.label ? (
+                    <Typography sx={{ position: 'absolute', left: 0, right: 0, bottom: 0, px: 1.4, pt: 3, pb: 1, color: '#fff', fontSize: '0.85rem', fontWeight: 600, background: 'linear-gradient(transparent, rgba(0, 0, 0, 0.65))' }}>
+                      {links.images[0].label}
+                    </Typography>
+                  ) : null}
+                </>
               ) : (
                 <Box sx={{ minHeight: 180, display: 'grid', placeItems: 'center', background: colors.imageBg }}>
                   <CircularProgress size={28} />
